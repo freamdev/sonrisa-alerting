@@ -1,0 +1,3687 @@
+{
+  "archive_format_version": 1,
+  "coverage_schema_version": 1,
+  "coverage": {
+    "scope": "REQUESTED_GENERATION",
+    "status_axes": {
+      "source_integrity": {
+        "status": "VERIFIED_READ_RANGES",
+        "proves": "Every byte range used by this generation was read from a stable regular file; declared prefix or full-file hashes apply only at export time.",
+        "does_not_prove": "Unread suffixes, future file state, or the existence of unreferenced missing files."
+      },
+      "logical_reconstruction": {
+        "status": "VERIFIED_PER_LOGICAL_THREAD",
+        "proves": "Each logical thread reports SINGLE_SOURCE or CHAIN_VALID from explicit local evidence.",
+        "does_not_prove": "That no additional unreferenced physical segment exists outside the inventoried local sources."
+      },
+      "reading_view_coverage": {
+        "status": "INDETERMINATE",
+        "proves": "Outer records and inner units are counted on separate levels with disjoint classifications and dispositions.",
+        "does_not_prove": "That unknown valid types contain no omitted conversation content."
+      }
+    },
+    "formats": {
+      "raw_jsonl": {
+        "role": "CANONICAL_SOURCE_SNAPSHOT",
+        "status": "NOT_INCLUDED"
+      },
+      "manifest_json": {
+        "role": "STRUCTURED_SOURCE_AND_COVERAGE_METADATA",
+        "status": "VERIFIED_AT_EXPORT"
+      },
+      "html": {
+        "role": "METADATA_INDEX",
+        "status": "VERIFIED_AT_EXPORT"
+      },
+      "markdown": {
+        "role": "DERIVED_READING_VIEW",
+        "status": "VERIFIED_AT_EXPORT"
+      },
+      "docx": {
+        "role": "DERIVED_READING_VIEW",
+        "status": "NOT_GENERATED"
+      },
+      "pdf": {
+        "role": "DERIVED_READING_VIEW",
+        "status": "VERIFIED_AT_EXPORT"
+      }
+    },
+    "physical_sources": [
+      {
+        "source_id": "source-0001",
+        "thread_id": "01a18f06-5c92-74c2-8949-c253db7a8ab4",
+        "rollout_id": "01a18f06-5c92-74c2-8949-c253db7a8ab4",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/30/rollout-2026-10-30T23-55-22-01a18f06-5c92-74c2-8949-c253db7a8ab4.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "751593",
+        "full_sha256": "b6bccfeee50ab4e85d496f50d6bb3c95d60cf72232208d729bbe2c535736544e",
+        "full_file_record_count": 159,
+        "usages": [
+          {
+            "logical_thread_id": "01a18f06-5c92-74c2-8949-c253db7a8ab4",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "751593",
+                "record_count": 159,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 159,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 123,
+                    "KNOWN_CONTROL_RECORD": 19,
+                    "UNKNOWN_RECORD_TYPE": 17,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0002",
+        "thread_id": "01a18f11-f52d-7401-850a-b62d1de60fad",
+        "rollout_id": "01a18f11-f52d-7401-850a-b62d1de60fad",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T00-08-01-01a18f11-f52d-7401-850a-b62d1de60fad.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "556734",
+        "full_sha256": "baf80e1537eefc3bd1eac9608eaab7561bd664bdf785a07556c88736d0ae04ce",
+        "full_file_record_count": 85,
+        "usages": [
+          {
+            "logical_thread_id": "01a18f11-f52d-7401-850a-b62d1de60fad",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "556734",
+                "record_count": 85,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 85,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 66,
+                    "KNOWN_CONTROL_RECORD": 11,
+                    "UNKNOWN_RECORD_TYPE": 8,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0003",
+        "thread_id": "01a18f17-7cb1-7a83-bc43-96454b5fbcb9",
+        "rollout_id": "01a18f17-7cb1-7a83-bc43-96454b5fbcb9",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T00-14-03-01a18f17-7cb1-7a83-bc43-96454b5fbcb9.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "1119261",
+        "full_sha256": "034716e56eb6becd5a04b5c4facfab838f7b863b5c96540b16080ffba8dd4442",
+        "full_file_record_count": 256,
+        "usages": [
+          {
+            "logical_thread_id": "01a18f17-7cb1-7a83-bc43-96454b5fbcb9",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "1119261",
+                "record_count": 256,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 256,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 185,
+                    "KNOWN_CONTROL_RECORD": 37,
+                    "UNKNOWN_RECORD_TYPE": 34,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0004",
+        "thread_id": "01a18f22-51c9-7391-ae03-20cc46415aa5",
+        "rollout_id": "01a18f22-51c9-7391-ae03-20cc46415aa5",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T00-25-53-01a18f22-51c9-7391-ae03-20cc46415aa5.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "866557",
+        "full_sha256": "c151da00e5be76e6ab7564649028509280eb8d908dcf61be4bf89ce8878cfc6e",
+        "full_file_record_count": 123,
+        "usages": [
+          {
+            "logical_thread_id": "01a18f22-51c9-7391-ae03-20cc46415aa5",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "866557",
+                "record_count": 123,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 123,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 90,
+                    "KNOWN_CONTROL_RECORD": 18,
+                    "UNKNOWN_RECORD_TYPE": 15,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0005",
+        "thread_id": "01a18f2d-464c-7df0-ad5a-37a118d46d0f",
+        "rollout_id": "01a18f2d-464c-7df0-ad5a-37a118d46d0f",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T00-37-51-01a18f2d-464c-7df0-ad5a-37a118d46d0f.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "502210",
+        "full_sha256": "cfbf8e25902dd408fe7e11424e8b1cf6af8b064676d3048d4f56d43dc7d5a4d5",
+        "full_file_record_count": 90,
+        "usages": [
+          {
+            "logical_thread_id": "01a18f2d-464c-7df0-ad5a-37a118d46d0f",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "502210",
+                "record_count": 90,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 90,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 63,
+                    "KNOWN_CONTROL_RECORD": 15,
+                    "UNKNOWN_RECORD_TYPE": 12,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0006",
+        "thread_id": "01a18f2e-f741-7652-a15a-320e679cb7e3",
+        "rollout_id": "01a18f2e-f741-7652-a15a-320e679cb7e3",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T00-39-42-01a18f2e-f741-7652-a15a-320e679cb7e3.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "801808",
+        "full_sha256": "5851677d5decea0c713e1544ff18bf48439845bc1dfc768b8af5e14962b4b97f",
+        "full_file_record_count": 109,
+        "usages": [
+          {
+            "logical_thread_id": "01a18f2e-f741-7652-a15a-320e679cb7e3",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "801808",
+                "record_count": 109,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 109,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 82,
+                    "KNOWN_CONTROL_RECORD": 15,
+                    "UNKNOWN_RECORD_TYPE": 12,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0007",
+        "thread_id": "01a18f35-4299-7e53-a82b-5b024151bf8a",
+        "rollout_id": "01a18f35-4299-7e53-a82b-5b024151bf8a",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T00-46-35-01a18f35-4299-7e53-a82b-5b024151bf8a.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "541703",
+        "full_sha256": "d152aa704dc43f3ba5d1bece191e425caab2e6ba9be79e84626490d82a346896",
+        "full_file_record_count": 139,
+        "usages": [
+          {
+            "logical_thread_id": "01a18f35-4299-7e53-a82b-5b024151bf8a",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "541703",
+                "record_count": 139,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 139,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 100,
+                    "KNOWN_CONTROL_RECORD": 21,
+                    "UNKNOWN_RECORD_TYPE": 18,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0008",
+        "thread_id": "01a18f38-b1af-7782-ae4f-ee6240bd7816",
+        "rollout_id": "01a18f38-b1af-7782-ae4f-ee6240bd7816",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T00-50-20-01a18f38-b1af-7782-ae4f-ee6240bd7816.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "868937",
+        "full_sha256": "3125dcfb6180c30708e355acd56bb58ad68d8bda2bd0b90d29d428d4060cdb9f",
+        "full_file_record_count": 115,
+        "usages": [
+          {
+            "logical_thread_id": "01a18f38-b1af-7782-ae4f-ee6240bd7816",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "868937",
+                "record_count": 115,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 115,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 88,
+                    "KNOWN_CONTROL_RECORD": 15,
+                    "UNKNOWN_RECORD_TYPE": 12,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0009",
+        "thread_id": "01a1917b-7669-7743-9291-8c5493a5002c",
+        "rollout_id": "01a1917b-7669-7743-9291-8c5493a5002c",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T11-22-30-01a1917b-7669-7743-9291-8c5493a5002c.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "406026",
+        "full_sha256": "1b65f55415c3d8cf5e79304b3fe3f520386aa4ac7027c62712e416fd64ae7b1a",
+        "full_file_record_count": 126,
+        "usages": [
+          {
+            "logical_thread_id": "01a1917b-7669-7743-9291-8c5493a5002c",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "406026",
+                "record_count": 126,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 126,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 77,
+                    "KNOWN_CONTROL_RECORD": 30,
+                    "UNKNOWN_RECORD_TYPE": 19,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0010",
+        "thread_id": "01a1917b-7759-7821-ac29-cb4d3b9ac059",
+        "rollout_id": "01a1917b-7759-7821-ac29-cb4d3b9ac059",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T11-22-30-01a1917b-7759-7821-ac29-cb4d3b9ac059.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "134637",
+        "full_sha256": "1cb90d549ab3d6a166a5e3e17d0d225a221739c64c704c65e64ac227ab6fce0d",
+        "full_file_record_count": 30,
+        "usages": [
+          {
+            "logical_thread_id": "01a1917b-7759-7821-ac29-cb4d3b9ac059",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "134637",
+                "record_count": 30,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 30,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 18,
+                    "KNOWN_CONTROL_RECORD": 9,
+                    "UNKNOWN_RECORD_TYPE": 3,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0011",
+        "thread_id": "01a1919e-bbd8-7863-a8f3-c9ae62229826",
+        "rollout_id": "01a1919e-bbd8-7863-a8f3-c9ae62229826",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T12-01-01-01a1919e-bbd8-7863-a8f3-c9ae62229826.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "634660",
+        "full_sha256": "417d2ae5c766d020b481ee5eb5da2d86d8e60a1e63329affcedcd83058826d27",
+        "full_file_record_count": 179,
+        "usages": [
+          {
+            "logical_thread_id": "01a1919e-bbd8-7863-a8f3-c9ae62229826",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "634660",
+                "record_count": 179,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 179,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 112,
+                    "KNOWN_CONTROL_RECORD": 39,
+                    "UNKNOWN_RECORD_TYPE": 28,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0012",
+        "thread_id": "01a1919e-bc5a-7292-8865-510d28324231",
+        "rollout_id": "01a1919e-bc5a-7292-8865-510d28324231",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T12-01-01-01a1919e-bc5a-7292-8865-510d28324231.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "306098",
+        "full_sha256": "4a96b4335140c509a005e07bdf5f9e42ddef6372c59b75a9dced772e7cabc063",
+        "full_file_record_count": 99,
+        "usages": [
+          {
+            "logical_thread_id": "01a1919e-bc5a-7292-8865-510d28324231",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "306098",
+                "record_count": 99,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 99,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 57,
+                    "KNOWN_CONTROL_RECORD": 33,
+                    "UNKNOWN_RECORD_TYPE": 9,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0013",
+        "thread_id": "01a191bd-eb7f-7273-ab0e-93c30211a3e0",
+        "rollout_id": "01a191bd-eb7f-7273-ab0e-93c30211a3e0",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T12-35-05-01a191bd-eb7f-7273-ab0e-93c30211a3e0.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "659969",
+        "full_sha256": "92aecf91f87a3efad8c0ba30d9d48f2fd44ebf2240619d898c3ba323cf02c1f7",
+        "full_file_record_count": 209,
+        "usages": [
+          {
+            "logical_thread_id": "01a191bd-eb7f-7273-ab0e-93c30211a3e0",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "659969",
+                "record_count": 209,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 209,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 128,
+                    "KNOWN_CONTROL_RECORD": 48,
+                    "UNKNOWN_RECORD_TYPE": 33,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0014",
+        "thread_id": "01a191bd-ebfc-7443-b679-fff9427463f1",
+        "rollout_id": "01a191bd-ebfc-7443-b679-fff9427463f1",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T12-35-05-01a191bd-ebfc-7443-b679-fff9427463f1.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "309966",
+        "full_sha256": "61b185939307b12d204a29b1efee10b19e9dcef2c7f238cc2022d32476de8f96",
+        "full_file_record_count": 99,
+        "usages": [
+          {
+            "logical_thread_id": "01a191bd-ebfc-7443-b679-fff9427463f1",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "309966",
+                "record_count": 99,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 99,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 57,
+                    "KNOWN_CONTROL_RECORD": 33,
+                    "UNKNOWN_RECORD_TYPE": 9,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0015",
+        "thread_id": "01a191d1-b60b-7542-9bac-9f48a9b02c4b",
+        "rollout_id": "01a191d1-b60b-7542-9bac-9f48a9b02c4b",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T12-56-42-01a191d1-b60b-7542-9bac-9f48a9b02c4b.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "598642",
+        "full_sha256": "551e222d7940f8cead090af16c464af35760b7a4a57c6f6ee79a7525eb432df9",
+        "full_file_record_count": 154,
+        "usages": [
+          {
+            "logical_thread_id": "01a191d1-b60b-7542-9bac-9f48a9b02c4b",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "598642",
+                "record_count": 154,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 154,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 97,
+                    "KNOWN_CONTROL_RECORD": 32,
+                    "UNKNOWN_RECORD_TYPE": 25,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0016",
+        "thread_id": "01a191d1-b68a-7571-adfc-99d4df896257",
+        "rollout_id": "01a191d1-b68a-7571-adfc-99d4df896257",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T12-56-42-01a191d1-b68a-7571-adfc-99d4df896257.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "269131",
+        "full_sha256": "e8fcbeb490ab7c79f02a99220065bfb393c383244697ac3cc528dc3255286a32",
+        "full_file_record_count": 87,
+        "usages": [
+          {
+            "logical_thread_id": "01a191d1-b68a-7571-adfc-99d4df896257",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "269131",
+                "record_count": 87,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 87,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 50,
+                    "KNOWN_CONTROL_RECORD": 29,
+                    "UNKNOWN_RECORD_TYPE": 8,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0017",
+        "thread_id": "01a191e2-a1be-7ac0-9465-504fcff95af2",
+        "rollout_id": "01a191e2-a1be-7ac0-9465-504fcff95af2",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T13-15-11-01a191e2-a1be-7ac0-9465-504fcff95af2.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "519987",
+        "full_sha256": "34e1ab855438bd4398d2369f931424273b20a9339c6228bb39c146e890231b49",
+        "full_file_record_count": 127,
+        "usages": [
+          {
+            "logical_thread_id": "01a191e2-a1be-7ac0-9465-504fcff95af2",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "519987",
+                "record_count": 127,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 127,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 80,
+                    "KNOWN_CONTROL_RECORD": 29,
+                    "UNKNOWN_RECORD_TYPE": 18,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0018",
+        "thread_id": "01a191f0-3e28-7933-b213-932f491e81e4",
+        "rollout_id": "01a191f0-3e28-7933-b213-932f491e81e4",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T13-30-03-01a191f0-3e28-7933-b213-932f491e81e4.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "769412",
+        "full_sha256": "3190f12084188a39613227a000b44292ade7528e9ecc85e11dd2cab571580574",
+        "full_file_record_count": 177,
+        "usages": [
+          {
+            "logical_thread_id": "01a191f0-3e28-7933-b213-932f491e81e4",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "769412",
+                "record_count": 177,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 177,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 112,
+                    "KNOWN_CONTROL_RECORD": 40,
+                    "UNKNOWN_RECORD_TYPE": 25,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "source_id": "source-0019",
+        "thread_id": "01a191f0-403e-72d0-a583-7309cd3c82d4",
+        "rollout_id": "01a191f0-403e-72d0-a583-7309cd3c82d4",
+        "storage": "active",
+        "source_root": "sessions",
+        "source_relative_path": "2026/10/31/rollout-2026-10-31T13-30-03-01a191f0-403e-72d0-a583-7309cd3c82d4.jsonl",
+        "source_representation": "jsonl",
+        "full_size_bytes": "111433",
+        "full_sha256": "5f8b69bee4047e4a13ad7fdafd7fdb080ad639dd24bf10657e29624c211d88ad",
+        "full_file_record_count": 17,
+        "usages": [
+          {
+            "logical_thread_id": "01a191f0-403e-72d0-a583-7309cd3c82d4",
+            "relation_status": "CANONICAL_SOURCE",
+            "canonical_source_id": null,
+            "identity_evidence": null,
+            "read_ranges": [
+              {
+                "kind": "FULL_FILE",
+                "start_byte_offset": "0",
+                "end_byte_offset": "111433",
+                "record_count": 17,
+                "record_count_basis": "PARSED_READ_RANGE",
+                "outer_records": {
+                  "total": 17,
+                  "classifications": {
+                    "KNOWN_CONTENT_RECORD": 10,
+                    "KNOWN_CONTROL_RECORD": 5,
+                    "UNKNOWN_RECORD_TYPE": 2,
+                    "SCHEMA_INVALID_RECORD": 0
+                  },
+                  "classification_basis": "PARSED_READ_RANGE"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "logical_threads": [
+      {
+        "session_id": "01a18f06-5c92-74c2-8949-c253db7a8ab4",
+        "physical_source_ids": [
+          "source-0001"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 159,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 123,
+            "KNOWN_CONTROL_RECORD": 19,
+            "UNKNOWN_RECORD_TYPE": 17,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 140,
+          "dispositions": {
+            "RENDERED": 11,
+            "SUPPRESSED_BY_PROFILE": 28,
+            "MIRRORED_OR_DEDUPLICATED": 0,
+            "KNOWN_CONTENT_RAW_ONLY": 27,
+            "UNKNOWN_RAW_ONLY": 74,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 17,
+          "unknown_inner_type": 57,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 14,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "item_completed",
+            "count": 55
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 15
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 2
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a18f11-f52d-7401-850a-b62d1de60fad",
+        "physical_source_ids": [
+          "source-0002"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 85,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 66,
+            "KNOWN_CONTROL_RECORD": 11,
+            "UNKNOWN_RECORD_TYPE": 8,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 74,
+          "dispositions": {
+            "RENDERED": 5,
+            "SUPPRESSED_BY_PROFILE": 12,
+            "MIRRORED_OR_DEDUPLICATED": 0,
+            "KNOWN_CONTENT_RAW_ONLY": 11,
+            "UNKNOWN_RAW_ONLY": 46,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 8,
+          "unknown_inner_type": 38,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 6,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "item_completed",
+            "count": 36
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 7
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a18f17-7cb1-7a83-bc43-96454b5fbcb9",
+        "physical_source_ids": [
+          "source-0003"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 256,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 185,
+            "KNOWN_CONTROL_RECORD": 37,
+            "UNKNOWN_RECORD_TYPE": 34,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 219,
+          "dispositions": {
+            "RENDERED": 8,
+            "SUPPRESSED_BY_PROFILE": 64,
+            "MIRRORED_OR_DEDUPLICATED": 0,
+            "KNOWN_CONTENT_RAW_ONLY": 35,
+            "UNKNOWN_RAW_ONLY": 112,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 34,
+          "unknown_inner_type": 78,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 32,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "item_completed",
+            "count": 76
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 33
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a18f22-51c9-7391-ae03-20cc46415aa5",
+        "physical_source_ids": [
+          "source-0004"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 123,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 90,
+            "KNOWN_CONTROL_RECORD": 18,
+            "UNKNOWN_RECORD_TYPE": 15,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 105,
+          "dispositions": {
+            "RENDERED": 6,
+            "SUPPRESSED_BY_PROFILE": 26,
+            "MIRRORED_OR_DEDUPLICATED": 0,
+            "KNOWN_CONTENT_RAW_ONLY": 19,
+            "UNKNOWN_RAW_ONLY": 54,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 15,
+          "unknown_inner_type": 39,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 13,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "item_completed",
+            "count": 37
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 14
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a18f2d-464c-7df0-ad5a-37a118d46d0f",
+        "physical_source_ids": [
+          "source-0005"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 90,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 63,
+            "KNOWN_CONTROL_RECORD": 15,
+            "UNKNOWN_RECORD_TYPE": 12,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 75,
+          "dispositions": {
+            "RENDERED": 6,
+            "SUPPRESSED_BY_PROFILE": 20,
+            "MIRRORED_OR_DEDUPLICATED": 0,
+            "KNOWN_CONTENT_RAW_ONLY": 11,
+            "UNKNOWN_RAW_ONLY": 38,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 12,
+          "unknown_inner_type": 26,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 10,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "item_completed",
+            "count": 24
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 11
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a18f2e-f741-7652-a15a-320e679cb7e3",
+        "physical_source_ids": [
+          "source-0006"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 109,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 82,
+            "KNOWN_CONTROL_RECORD": 15,
+            "UNKNOWN_RECORD_TYPE": 12,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 94,
+          "dispositions": {
+            "RENDERED": 6,
+            "SUPPRESSED_BY_PROFILE": 20,
+            "MIRRORED_OR_DEDUPLICATED": 0,
+            "KNOWN_CONTENT_RAW_ONLY": 15,
+            "UNKNOWN_RAW_ONLY": 53,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 12,
+          "unknown_inner_type": 41,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 10,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "item_completed",
+            "count": 39
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 11
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a18f35-4299-7e53-a82b-5b024151bf8a",
+        "physical_source_ids": [
+          "source-0007"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 139,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 100,
+            "KNOWN_CONTROL_RECORD": 21,
+            "UNKNOWN_RECORD_TYPE": 18,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 118,
+          "dispositions": {
+            "RENDERED": 7,
+            "SUPPRESSED_BY_PROFILE": 32,
+            "MIRRORED_OR_DEDUPLICATED": 0,
+            "KNOWN_CONTENT_RAW_ONLY": 17,
+            "UNKNOWN_RAW_ONLY": 62,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 18,
+          "unknown_inner_type": 44,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 16,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "item_completed",
+            "count": 42
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 17
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a18f38-b1af-7782-ae4f-ee6240bd7816",
+        "physical_source_ids": [
+          "source-0008"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 115,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 88,
+            "KNOWN_CONTROL_RECORD": 15,
+            "UNKNOWN_RECORD_TYPE": 12,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 100,
+          "dispositions": {
+            "RENDERED": 7,
+            "SUPPRESSED_BY_PROFILE": 20,
+            "MIRRORED_OR_DEDUPLICATED": 0,
+            "KNOWN_CONTENT_RAW_ONLY": 17,
+            "UNKNOWN_RAW_ONLY": 56,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 12,
+          "unknown_inner_type": 44,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 10,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "item_completed",
+            "count": 42
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 11
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a1917b-7669-7743-9291-8c5493a5002c",
+        "physical_source_ids": [
+          "source-0009"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 126,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 77,
+            "KNOWN_CONTROL_RECORD": 30,
+            "UNKNOWN_RECORD_TYPE": 19,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 96,
+          "dispositions": {
+            "RENDERED": 13,
+            "SUPPRESSED_BY_PROFILE": 30,
+            "MIRRORED_OR_DEDUPLICATED": 3,
+            "KNOWN_CONTENT_RAW_ONLY": 23,
+            "UNKNOWN_RAW_ONLY": 27,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 19,
+          "unknown_inner_type": 8,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 15,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "patch_apply_end",
+            "count": 3
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 3
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "web_search_end",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 18
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a1917b-7759-7821-ac29-cb4d3b9ac059",
+        "physical_source_ids": [
+          "source-0010"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 30,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 18,
+            "KNOWN_CONTROL_RECORD": 9,
+            "UNKNOWN_RECORD_TYPE": 3,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 21,
+          "dispositions": {
+            "RENDERED": 5,
+            "SUPPRESSED_BY_PROFILE": 0,
+            "MIRRORED_OR_DEDUPLICATED": 0,
+            "KNOWN_CONTENT_RAW_ONLY": 5,
+            "UNKNOWN_RAW_ONLY": 11,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 3,
+          "unknown_inner_type": 8,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 0,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "item_completed",
+            "count": 5
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 2
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 2
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a1919e-bbd8-7863-a8f3-c9ae62229826",
+        "physical_source_ids": [
+          "source-0011"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 179,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 112,
+            "KNOWN_CONTROL_RECORD": 39,
+            "UNKNOWN_RECORD_TYPE": 28,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 140,
+          "dispositions": {
+            "RENDERED": 14,
+            "SUPPRESSED_BY_PROFILE": 48,
+            "MIRRORED_OR_DEDUPLICATED": 3,
+            "KNOWN_CONTENT_RAW_ONLY": 33,
+            "UNKNOWN_RAW_ONLY": 42,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 28,
+          "unknown_inner_type": 14,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 24,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "patch_apply_end",
+            "count": 9
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 3
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "web_search_end",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 27
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a1919e-bc5a-7292-8865-510d28324231",
+        "physical_source_ids": [
+          "source-0012"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 99,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 57,
+            "KNOWN_CONTROL_RECORD": 33,
+            "UNKNOWN_RECORD_TYPE": 9,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 66,
+          "dispositions": {
+            "RENDERED": 17,
+            "SUPPRESSED_BY_PROFILE": 0,
+            "MIRRORED_OR_DEDUPLICATED": 0,
+            "KNOWN_CONTENT_RAW_ONLY": 11,
+            "UNKNOWN_RAW_ONLY": 38,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 9,
+          "unknown_inner_type": 29,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 0,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "item_completed",
+            "count": 20
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 8
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 8
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a191bd-eb7f-7273-ab0e-93c30211a3e0",
+        "physical_source_ids": [
+          "source-0013"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 209,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 128,
+            "KNOWN_CONTROL_RECORD": 48,
+            "UNKNOWN_RECORD_TYPE": 33,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 161,
+          "dispositions": {
+            "RENDERED": 17,
+            "SUPPRESSED_BY_PROFILE": 56,
+            "MIRRORED_OR_DEDUPLICATED": 4,
+            "KNOWN_CONTENT_RAW_ONLY": 36,
+            "UNKNOWN_RAW_ONLY": 48,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 33,
+          "unknown_inner_type": 15,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 28,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "patch_apply_end",
+            "count": 10
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 4
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 32
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a191bd-ebfc-7443-b679-fff9427463f1",
+        "physical_source_ids": [
+          "source-0014"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 99,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 57,
+            "KNOWN_CONTROL_RECORD": 33,
+            "UNKNOWN_RECORD_TYPE": 9,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 66,
+          "dispositions": {
+            "RENDERED": 17,
+            "SUPPRESSED_BY_PROFILE": 0,
+            "MIRRORED_OR_DEDUPLICATED": 0,
+            "KNOWN_CONTENT_RAW_ONLY": 10,
+            "UNKNOWN_RAW_ONLY": 39,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 9,
+          "unknown_inner_type": 30,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 0,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "item_completed",
+            "count": 21
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 8
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 8
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a191d1-b60b-7542-9bac-9f48a9b02c4b",
+        "physical_source_ids": [
+          "source-0015"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 154,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 97,
+            "KNOWN_CONTROL_RECORD": 32,
+            "UNKNOWN_RECORD_TYPE": 25,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 122,
+          "dispositions": {
+            "RENDERED": 12,
+            "SUPPRESSED_BY_PROFILE": 44,
+            "MIRRORED_OR_DEDUPLICATED": 2,
+            "KNOWN_CONTENT_RAW_ONLY": 33,
+            "UNKNOWN_RAW_ONLY": 31,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 25,
+          "unknown_inner_type": 6,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 22,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "patch_apply_end",
+            "count": 2
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 2
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "web_search_end",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 24
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a191d1-b68a-7571-adfc-99d4df896257",
+        "physical_source_ids": [
+          "source-0016"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 87,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 50,
+            "KNOWN_CONTROL_RECORD": 29,
+            "UNKNOWN_RECORD_TYPE": 8,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 58,
+          "dispositions": {
+            "RENDERED": 15,
+            "SUPPRESSED_BY_PROFILE": 0,
+            "MIRRORED_OR_DEDUPLICATED": 0,
+            "KNOWN_CONTENT_RAW_ONLY": 10,
+            "UNKNOWN_RAW_ONLY": 33,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 8,
+          "unknown_inner_type": 25,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 0,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "item_completed",
+            "count": 17
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 7
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 7
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a191e2-a1be-7ac0-9465-504fcff95af2",
+        "physical_source_ids": [
+          "source-0017"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 127,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 80,
+            "KNOWN_CONTROL_RECORD": 29,
+            "UNKNOWN_RECORD_TYPE": 18,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 98,
+          "dispositions": {
+            "RENDERED": 14,
+            "SUPPRESSED_BY_PROFILE": 28,
+            "MIRRORED_OR_DEDUPLICATED": 3,
+            "KNOWN_CONTENT_RAW_ONLY": 25,
+            "UNKNOWN_RAW_ONLY": 28,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 18,
+          "unknown_inner_type": 10,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 14,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "patch_apply_end",
+            "count": 6
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 3
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 17
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a191f0-3e28-7933-b213-932f491e81e4",
+        "physical_source_ids": [
+          "source-0018"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 177,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 112,
+            "KNOWN_CONTROL_RECORD": 40,
+            "UNKNOWN_RECORD_TYPE": 25,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 137,
+          "dispositions": {
+            "RENDERED": 17,
+            "SUPPRESSED_BY_PROFILE": 40,
+            "MIRRORED_OR_DEDUPLICATED": 4,
+            "KNOWN_CONTENT_RAW_ONLY": 33,
+            "UNKNOWN_RAW_ONLY": 43,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 25,
+          "unknown_inner_type": 18,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 20,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "patch_apply_end",
+            "count": 11
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 4
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "web_search_end",
+            "count": 2
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 24
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "session_id": "01a191f0-403e-72d0-a583-7309cd3c82d4",
+        "physical_source_ids": [
+          "source-0019"
+        ],
+        "reconstruction": {
+          "status": "SINGLE_SOURCE",
+          "proves": "The logical view uses one inventoried physical source and no history_base chain was claimed.",
+          "does_not_prove": "A physically absent file that no present source references can be detected from the local inventory."
+        },
+        "outer_records": {
+          "total": 17,
+          "classifications": {
+            "KNOWN_CONTENT_RECORD": 10,
+            "KNOWN_CONTROL_RECORD": 5,
+            "UNKNOWN_RECORD_TYPE": 2,
+            "SCHEMA_INVALID_RECORD": 0
+          }
+        },
+        "inner_units": {
+          "total": 12,
+          "dispositions": {
+            "RENDERED": 3,
+            "SUPPRESSED_BY_PROFILE": 0,
+            "MIRRORED_OR_DEDUPLICATED": 0,
+            "KNOWN_CONTENT_RAW_ONLY": 3,
+            "UNKNOWN_RAW_ONLY": 6,
+            "SCHEMA_INVALID_RAW_ONLY": 0
+          }
+        },
+        "anomalies": {
+          "duplicate_ordinal": 0,
+          "regressive_ordinal": 0,
+          "skipped_ordinal": 0,
+          "invalid_ordinal": 0,
+          "unknown_outer_record_type": 2,
+          "unknown_inner_type": 4,
+          "tool_output_no_call_id_present": 0,
+          "tool_output_empty_call_id": 0,
+          "tool_output_invalid_call_id": 0,
+          "tool_output_unmatched_call_id": 0,
+          "tool_output_ambiguous_call_id": 0,
+          "present_but_unlinked_segment": 0,
+          "ambiguous_segment_order": 0
+        },
+        "tool_output_linkage": {
+          "MATCHED": 0,
+          "NO_CALL_ID_PRESENT": 0,
+          "EMPTY_CALL_ID": 0,
+          "UNMATCHED": 0,
+          "AMBIGUOUS_CALL_ID": 0,
+          "SCHEMA_INVALID_CALL_ID": 0
+        },
+        "reading_view": {
+          "profile": "readable",
+          "status": "INDETERMINATE",
+          "proves": "Every counted inner unit has exactly one disposition in the shared reading model for this profile.",
+          "does_not_prove": "Unknown or schema-invalid units contain no conversation content; format rendering is byte-identical to Raw."
+        },
+        "semantic_gaps": [
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "item_completed",
+            "count": 2
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_EVENT_PAYLOAD_TYPE",
+            "structure_path": "payload",
+            "record_type": "event_msg",
+            "inner_type": "thread_settings_applied",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "token_usage_record",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_OUTER_RECORD_BODY",
+            "structure_path": "$",
+            "record_type": "world_state",
+            "inner_type": "empty_string",
+            "count": 1
+          },
+          {
+            "disposition": "UNKNOWN_RAW_ONLY",
+            "reason_code": "UNKNOWN_RESPONSE_ITEM_TYPE",
+            "structure_path": "payload",
+            "record_type": "response_item",
+            "inner_type": "additional_tools",
+            "count": 1
+          }
+        ]
+      }
+    ]
+  },
+  "canonical_representation": "raw_jsonl",
+  "canonical_representation_included": false,
+  "export_profile": "readable",
+  "formats": {
+    "raw": false,
+    "markdown": true,
+    "html": true,
+    "docx": false,
+    "pdf": true,
+    "attachments": true
+  },
+  "include_tools": false,
+  "replacement_history_in_reading_views": false,
+  "replacement_history_source_unchanged": true,
+  "session_model_histories": [
+    {
+      "session_id": "01a18f06-5c92-74c2-8949-c253db7a8ab4",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a18f11-f52d-7401-850a-b62d1de60fad",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a18f17-7cb1-7a83-bc43-96454b5fbcb9",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a18f22-51c9-7391-ae03-20cc46415aa5",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a18f2d-464c-7df0-ad5a-37a118d46d0f",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a18f2e-f741-7652-a15a-320e679cb7e3",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a18f35-4299-7e53-a82b-5b024151bf8a",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a18f38-b1af-7782-ae4f-ee6240bd7816",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a1917b-7669-7743-9291-8c5493a5002c",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a1917b-7759-7821-ac29-cb4d3b9ac059",
+      "models": [
+        "codex-auto-review"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a1919e-bbd8-7863-a8f3-c9ae62229826",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a1919e-bc5a-7292-8865-510d28324231",
+      "models": [
+        "codex-auto-review"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a191bd-eb7f-7273-ab0e-93c30211a3e0",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a191bd-ebfc-7443-b679-fff9427463f1",
+      "models": [
+        "codex-auto-review"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a191d1-b60b-7542-9bac-9f48a9b02c4b",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a191d1-b68a-7571-adfc-99d4df896257",
+      "models": [
+        "codex-auto-review"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a191e2-a1be-7ac0-9465-504fcff95af2",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a191f0-3e28-7933-b213-932f491e81e4",
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "session_id": "01a191f0-403e-72d0-a583-7309cd3c82d4",
+      "models": [
+        "codex-auto-review"
+      ],
+      "status": "CONFIRMED"
+    }
+  ],
+  "generated_at": "2026-10-31T12:50:46.771Z",
+  "codex_home": "C:\\Users\\fream\\.codex",
+  "sessions_dir": "C:\\Users\\fream\\.codex\\sessions",
+  "archived_sessions_dir": "C:\\Users\\fream\\.codex\\archived_sessions",
+  "session_index": "C:\\Users\\fream\\.codex\\session_index.jsonl",
+  "path_style": "short",
+  "assets_manifest": "assets/manifest.json",
+  "asset_occurrences": 0,
+  "unique_assets": 0,
+  "unique_asset_bytes": 0,
+  "deduplicated_asset_bytes_saved": 0,
+  "sessions": [
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Codex session 01a18f06…",
+      "display_title": "Codex session 01a18f06…",
+      "title_source": "neutral_no_user",
+      "indexed_title_status": "NOT_PRESENT",
+      "storage": "active",
+      "session_id": "01a18f06-5c92-74c2-8949-c253db7a8ab4",
+      "session_kind": "DIRECT_USER",
+      "started_at": "2026-10-30T22:55:22.319Z",
+      "updated_at": "2026-10-30T23:07:59.732Z",
+      "model": "gpt-6.1-sol",
+      "user_messages": 0,
+      "assistant_messages": 8,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 0,
+      "unclassified_user_role_records": 3,
+      "tool_events": 28,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\30\\rollout-2026-10-30T23-55-22-01a18f06-5c92-74c2-8949-c253db7a8ab4.jsonl",
+      "source_original_filename": "rollout-2026-10-30T23-55-22-01a18f06-5c92-74c2-8949-c253db7a8ab4.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/30/rollout-2026-10-30T23-55-22-01a18f06-5c92-74c2-8949-c253db7a8ab4.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0001.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0001.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 159,
+      "parsed_event_count": 159,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Codex session 01a18f11…",
+      "display_title": "Codex session 01a18f11…",
+      "title_source": "neutral_no_user",
+      "indexed_title_status": "NOT_PRESENT",
+      "storage": "active",
+      "session_id": "01a18f11-f52d-7401-850a-b62d1de60fad",
+      "session_kind": "DIRECT_USER",
+      "started_at": "2026-10-30T23:08:01.291Z",
+      "updated_at": "2026-10-30T23:09:57.760Z",
+      "model": "gpt-6.1-sol",
+      "user_messages": 0,
+      "assistant_messages": 3,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 0,
+      "unclassified_user_role_records": 2,
+      "tool_events": 12,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T00-08-01-01a18f11-f52d-7401-850a-b62d1de60fad.jsonl",
+      "source_original_filename": "rollout-2026-10-31T00-08-01-01a18f11-f52d-7401-850a-b62d1de60fad.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T00-08-01-01a18f11-f52d-7401-850a-b62d1de60fad.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0002.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0002.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 85,
+      "parsed_event_count": 85,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Codex session 01a18f17…",
+      "display_title": "Codex session 01a18f17…",
+      "title_source": "neutral_no_user",
+      "indexed_title_status": "NOT_PRESENT",
+      "storage": "active",
+      "session_id": "01a18f17-7cb1-7a83-bc43-96454b5fbcb9",
+      "session_kind": "DIRECT_USER",
+      "started_at": "2026-10-30T23:14:03.989Z",
+      "updated_at": "2026-10-30T23:25:52.107Z",
+      "model": "gpt-6.1-sol",
+      "user_messages": 0,
+      "assistant_messages": 6,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 0,
+      "unclassified_user_role_records": 2,
+      "tool_events": 64,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T00-14-03-01a18f17-7cb1-7a83-bc43-96454b5fbcb9.jsonl",
+      "source_original_filename": "rollout-2026-10-31T00-14-03-01a18f17-7cb1-7a83-bc43-96454b5fbcb9.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T00-14-03-01a18f17-7cb1-7a83-bc43-96454b5fbcb9.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0003.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0003.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 256,
+      "parsed_event_count": 256,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Codex session 01a18f22…",
+      "display_title": "Codex session 01a18f22…",
+      "title_source": "neutral_no_user",
+      "indexed_title_status": "NOT_PRESENT",
+      "storage": "active",
+      "session_id": "01a18f22-51c9-7391-ae03-20cc46415aa5",
+      "session_kind": "DIRECT_USER",
+      "started_at": "2026-10-30T23:25:53.578Z",
+      "updated_at": "2026-10-30T23:29:18.274Z",
+      "model": "gpt-6.1-sol",
+      "user_messages": 0,
+      "assistant_messages": 4,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 0,
+      "unclassified_user_role_records": 2,
+      "tool_events": 26,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T00-25-53-01a18f22-51c9-7391-ae03-20cc46415aa5.jsonl",
+      "source_original_filename": "rollout-2026-10-31T00-25-53-01a18f22-51c9-7391-ae03-20cc46415aa5.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T00-25-53-01a18f22-51c9-7391-ae03-20cc46415aa5.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0004.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0004.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 123,
+      "parsed_event_count": 123,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Codex session 01a18f2d…",
+      "display_title": "Codex session 01a18f2d…",
+      "title_source": "neutral_no_user",
+      "indexed_title_status": "NOT_PRESENT",
+      "storage": "active",
+      "session_id": "01a18f2d-464c-7df0-ad5a-37a118d46d0f",
+      "session_kind": "DIRECT_USER",
+      "started_at": "2026-10-30T23:37:51.964Z",
+      "updated_at": "2026-10-30T23:39:40.863Z",
+      "model": "gpt-6.1-sol",
+      "user_messages": 0,
+      "assistant_messages": 4,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 0,
+      "unclassified_user_role_records": 2,
+      "tool_events": 20,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T00-37-51-01a18f2d-464c-7df0-ad5a-37a118d46d0f.jsonl",
+      "source_original_filename": "rollout-2026-10-31T00-37-51-01a18f2d-464c-7df0-ad5a-37a118d46d0f.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T00-37-51-01a18f2d-464c-7df0-ad5a-37a118d46d0f.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0005.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0005.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 90,
+      "parsed_event_count": 90,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Codex session 01a18f2e…",
+      "display_title": "Codex session 01a18f2e…",
+      "title_source": "neutral_no_user",
+      "indexed_title_status": "NOT_PRESENT",
+      "storage": "active",
+      "session_id": "01a18f2e-f741-7652-a15a-320e679cb7e3",
+      "session_kind": "DIRECT_USER",
+      "started_at": "2026-10-30T23:39:42.378Z",
+      "updated_at": "2026-10-30T23:42:22.171Z",
+      "model": "gpt-6.1-sol",
+      "user_messages": 0,
+      "assistant_messages": 4,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 0,
+      "unclassified_user_role_records": 2,
+      "tool_events": 20,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T00-39-42-01a18f2e-f741-7652-a15a-320e679cb7e3.jsonl",
+      "source_original_filename": "rollout-2026-10-31T00-39-42-01a18f2e-f741-7652-a15a-320e679cb7e3.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T00-39-42-01a18f2e-f741-7652-a15a-320e679cb7e3.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0006.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0006.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 109,
+      "parsed_event_count": 109,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Codex session 01a18f35…",
+      "display_title": "Codex session 01a18f35…",
+      "title_source": "neutral_no_user",
+      "indexed_title_status": "NOT_PRESENT",
+      "storage": "active",
+      "session_id": "01a18f35-4299-7e53-a82b-5b024151bf8a",
+      "session_kind": "DIRECT_USER",
+      "started_at": "2026-10-30T23:46:35.414Z",
+      "updated_at": "2026-10-30T23:49:55.456Z",
+      "model": "gpt-6.1-sol",
+      "user_messages": 0,
+      "assistant_messages": 5,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 0,
+      "unclassified_user_role_records": 2,
+      "tool_events": 32,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T00-46-35-01a18f35-4299-7e53-a82b-5b024151bf8a.jsonl",
+      "source_original_filename": "rollout-2026-10-31T00-46-35-01a18f35-4299-7e53-a82b-5b024151bf8a.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T00-46-35-01a18f35-4299-7e53-a82b-5b024151bf8a.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0007.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0007.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 139,
+      "parsed_event_count": 139,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Codex session 01a18f38…",
+      "display_title": "Codex session 01a18f38…",
+      "title_source": "neutral_no_user",
+      "indexed_title_status": "NOT_PRESENT",
+      "storage": "active",
+      "session_id": "01a18f38-b1af-7782-ae4f-ee6240bd7816",
+      "session_kind": "DIRECT_USER",
+      "started_at": "2026-10-30T23:50:20.375Z",
+      "updated_at": "2026-10-30T23:53:53.489Z",
+      "model": "gpt-6.1-sol",
+      "user_messages": 0,
+      "assistant_messages": 5,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 0,
+      "unclassified_user_role_records": 2,
+      "tool_events": 20,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T00-50-20-01a18f38-b1af-7782-ae4f-ee6240bd7816.jsonl",
+      "source_original_filename": "rollout-2026-10-31T00-50-20-01a18f38-b1af-7782-ae4f-ee6240bd7816.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T00-50-20-01a18f38-b1af-7782-ae4f-ee6240bd7816.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0008.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0008.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 115,
+      "parsed_event_count": 115,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Implement Phase 00 skeleton",
+      "display_title": "Implement Phase 00 skeleton",
+      "title_source": "session_index",
+      "indexed_title_status": "ACCEPTED",
+      "storage": "active",
+      "session_id": "01a1917b-7669-7743-9291-8c5493a5002c",
+      "session_kind": "DIRECT_USER",
+      "started_at": "2026-10-31T10:22:30.088Z",
+      "updated_at": "2026-10-31T10:46:31.700Z",
+      "model": "gpt-6.1-sol",
+      "user_messages": 3,
+      "assistant_messages": 8,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 2,
+      "unclassified_user_role_records": 0,
+      "tool_events": 30,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T11-22-30-01a1917b-7669-7743-9291-8c5493a5002c.jsonl",
+      "source_original_filename": "rollout-2026-10-31T11-22-30-01a1917b-7669-7743-9291-8c5493a5002c.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T11-22-30-01a1917b-7669-7743-9291-8c5493a5002c.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0009.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0009.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 126,
+      "parsed_event_count": 126,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Guardian review",
+      "display_title": "Guardian review",
+      "title_source": "session_index",
+      "indexed_title_status": "ACCEPTED",
+      "storage": "active",
+      "session_id": "01a1917b-7759-7821-ac29-cb4d3b9ac059",
+      "session_kind": "SUBAGENT",
+      "started_at": "2026-10-31T10:22:30.317Z",
+      "updated_at": "2026-10-31T10:30:05.648Z",
+      "model": "codex-auto-review",
+      "user_messages": 0,
+      "assistant_messages": 2,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 0,
+      "unclassified_user_role_records": 3,
+      "tool_events": 0,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T11-22-30-01a1917b-7759-7821-ac29-cb4d3b9ac059.jsonl",
+      "source_original_filename": "rollout-2026-10-31T11-22-30-01a1917b-7759-7821-ac29-cb4d3b9ac059.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T11-22-30-01a1917b-7759-7821-ac29-cb4d3b9ac059.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0010.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0010.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 30,
+      "parsed_event_count": 30,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Implement Phase 01 skeleton",
+      "display_title": "Implement Phase 01 skeleton",
+      "title_source": "session_index",
+      "indexed_title_status": "ACCEPTED",
+      "storage": "active",
+      "session_id": "01a1919e-bbd8-7863-a8f3-c9ae62229826",
+      "session_kind": "DIRECT_USER",
+      "started_at": "2026-10-31T11:01:01.613Z",
+      "updated_at": "2026-10-31T11:30:47.105Z",
+      "model": "gpt-6.1-sol",
+      "user_messages": 3,
+      "assistant_messages": 9,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 2,
+      "unclassified_user_role_records": 0,
+      "tool_events": 48,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T12-01-01-01a1919e-bbd8-7863-a8f3-c9ae62229826.jsonl",
+      "source_original_filename": "rollout-2026-10-31T12-01-01-01a1919e-bbd8-7863-a8f3-c9ae62229826.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T12-01-01-01a1919e-bbd8-7863-a8f3-c9ae62229826.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0011.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0011.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 179,
+      "parsed_event_count": 179,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Guardian review",
+      "display_title": "Guardian review",
+      "title_source": "session_index",
+      "indexed_title_status": "ACCEPTED",
+      "storage": "active",
+      "session_id": "01a1919e-bc5a-7292-8865-510d28324231",
+      "session_kind": "SUBAGENT",
+      "started_at": "2026-10-31T11:01:01.754Z",
+      "updated_at": "2026-10-31T11:17:13.697Z",
+      "model": "codex-auto-review",
+      "user_messages": 0,
+      "assistant_messages": 8,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 0,
+      "unclassified_user_role_records": 9,
+      "tool_events": 0,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T12-01-01-01a1919e-bc5a-7292-8865-510d28324231.jsonl",
+      "source_original_filename": "rollout-2026-10-31T12-01-01-01a1919e-bc5a-7292-8865-510d28324231.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T12-01-01-01a1919e-bc5a-7292-8865-510d28324231.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0012.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0012.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 99,
+      "parsed_event_count": 99,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Implement Phase 02 data",
+      "display_title": "Implement Phase 02 data",
+      "title_source": "session_index",
+      "indexed_title_status": "ACCEPTED",
+      "storage": "active",
+      "session_id": "01a191bd-eb7f-7273-ab0e-93c30211a3e0",
+      "session_kind": "DIRECT_USER",
+      "started_at": "2026-10-31T11:35:05.425Z",
+      "updated_at": "2026-10-31T11:52:47.488Z",
+      "model": "gpt-6.1-sol",
+      "user_messages": 4,
+      "assistant_messages": 11,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 2,
+      "unclassified_user_role_records": 0,
+      "tool_events": 56,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T12-35-05-01a191bd-eb7f-7273-ab0e-93c30211a3e0.jsonl",
+      "source_original_filename": "rollout-2026-10-31T12-35-05-01a191bd-eb7f-7273-ab0e-93c30211a3e0.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T12-35-05-01a191bd-eb7f-7273-ab0e-93c30211a3e0.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0013.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0013.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 209,
+      "parsed_event_count": 209,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Guardian review",
+      "display_title": "Guardian review",
+      "title_source": "session_index",
+      "indexed_title_status": "ACCEPTED",
+      "storage": "active",
+      "session_id": "01a191bd-ebfc-7443-b679-fff9427463f1",
+      "session_kind": "SUBAGENT",
+      "started_at": "2026-10-31T11:35:05.556Z",
+      "updated_at": "2026-10-31T11:43:04.630Z",
+      "model": "codex-auto-review",
+      "user_messages": 0,
+      "assistant_messages": 8,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 0,
+      "unclassified_user_role_records": 9,
+      "tool_events": 0,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T12-35-05-01a191bd-ebfc-7443-b679-fff9427463f1.jsonl",
+      "source_original_filename": "rollout-2026-10-31T12-35-05-01a191bd-ebfc-7443-b679-fff9427463f1.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T12-35-05-01a191bd-ebfc-7443-b679-fff9427463f1.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0014.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0014.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 99,
+      "parsed_event_count": 99,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Implement Phase 03 compose",
+      "display_title": "Implement Phase 03 compose",
+      "title_source": "session_index",
+      "indexed_title_status": "ACCEPTED",
+      "storage": "active",
+      "session_id": "01a191d1-b60b-7542-9bac-9f48a9b02c4b",
+      "session_kind": "DIRECT_USER",
+      "started_at": "2026-10-31T11:56:42.462Z",
+      "updated_at": "2026-10-31T12:10:57.656Z",
+      "model": "gpt-6.1-sol",
+      "user_messages": 2,
+      "assistant_messages": 8,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 2,
+      "unclassified_user_role_records": 0,
+      "tool_events": 44,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T12-56-42-01a191d1-b60b-7542-9bac-9f48a9b02c4b.jsonl",
+      "source_original_filename": "rollout-2026-10-31T12-56-42-01a191d1-b60b-7542-9bac-9f48a9b02c4b.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T12-56-42-01a191d1-b60b-7542-9bac-9f48a9b02c4b.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0015.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0015.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 154,
+      "parsed_event_count": 154,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Guardian review",
+      "display_title": "Guardian review",
+      "title_source": "session_index",
+      "indexed_title_status": "ACCEPTED",
+      "storage": "active",
+      "session_id": "01a191d1-b68a-7571-adfc-99d4df896257",
+      "session_kind": "SUBAGENT",
+      "started_at": "2026-10-31T11:56:42.603Z",
+      "updated_at": "2026-10-31T12:03:10.530Z",
+      "model": "codex-auto-review",
+      "user_messages": 0,
+      "assistant_messages": 7,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 0,
+      "unclassified_user_role_records": 8,
+      "tool_events": 0,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T12-56-42-01a191d1-b68a-7571-adfc-99d4df896257.jsonl",
+      "source_original_filename": "rollout-2026-10-31T12-56-42-01a191d1-b68a-7571-adfc-99d4df896257.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T12-56-42-01a191d1-b68a-7571-adfc-99d4df896257.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0016.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0016.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 87,
+      "parsed_event_count": 87,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Implement Phase 04 routing",
+      "display_title": "Implement Phase 04 routing",
+      "title_source": "session_index",
+      "indexed_title_status": "ACCEPTED",
+      "storage": "active",
+      "session_id": "01a191e2-a1be-7ac0-9465-504fcff95af2",
+      "session_kind": "DIRECT_USER",
+      "started_at": "2026-10-31T12:15:11.728Z",
+      "updated_at": "2026-10-31T12:28:20.182Z",
+      "model": "gpt-6.1-sol",
+      "user_messages": 3,
+      "assistant_messages": 9,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 2,
+      "unclassified_user_role_records": 0,
+      "tool_events": 28,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T13-15-11-01a191e2-a1be-7ac0-9465-504fcff95af2.jsonl",
+      "source_original_filename": "rollout-2026-10-31T13-15-11-01a191e2-a1be-7ac0-9465-504fcff95af2.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T13-15-11-01a191e2-a1be-7ac0-9465-504fcff95af2.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0017.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0017.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 127,
+      "parsed_event_count": 127,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Implement phase 05 only",
+      "display_title": "Implement phase 05 only",
+      "title_source": "session_index",
+      "indexed_title_status": "ACCEPTED",
+      "storage": "active",
+      "session_id": "01a191f0-3e28-7933-b213-932f491e81e4",
+      "session_kind": "DIRECT_USER",
+      "started_at": "2026-10-31T12:30:03.795Z",
+      "updated_at": "2026-10-31T12:49:06.427Z",
+      "model": "gpt-6.1-sol",
+      "user_messages": 4,
+      "assistant_messages": 11,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 2,
+      "unclassified_user_role_records": 0,
+      "tool_events": 40,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T13-30-03-01a191f0-3e28-7933-b213-932f491e81e4.jsonl",
+      "source_original_filename": "rollout-2026-10-31T13-30-03-01a191f0-3e28-7933-b213-932f491e81e4.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T13-30-03-01a191f0-3e28-7933-b213-932f491e81e4.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0018.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0018.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 177,
+      "parsed_event_count": 177,
+      "invalid_jsonl_line_count": 0
+    },
+    {
+      "project": "D:\\Temp\\Sonrisa",
+      "project_name": "Sonrisa",
+      "title": "Guardian review",
+      "display_title": "Guardian review",
+      "title_source": "session_index",
+      "indexed_title_status": "ACCEPTED",
+      "storage": "active",
+      "session_id": "01a191f0-403e-72d0-a583-7309cd3c82d4",
+      "session_kind": "SUBAGENT",
+      "started_at": "2026-10-31T12:30:03.928Z",
+      "updated_at": "2026-10-31T12:37:51.475Z",
+      "model": "codex-auto-review",
+      "user_messages": 0,
+      "assistant_messages": 1,
+      "subagent_inputs": 0,
+      "automatic_runtime_contexts": 0,
+      "unclassified_user_role_records": 2,
+      "tool_events": 0,
+      "source_jsonl": "C:\\Users\\fream\\.codex\\sessions\\2026\\10\\31\\rollout-2026-10-31T13-30-03-01a191f0-403e-72d0-a583-7309cd3c82d4.jsonl",
+      "source_original_filename": "rollout-2026-10-31T13-30-03-01a191f0-403e-72d0-a583-7309cd3c82d4.jsonl",
+      "source_root": "sessions",
+      "source_relative_path": "2026/10/31/rollout-2026-10-31T13-30-03-01a191f0-403e-72d0-a583-7309cd3c82d4.jsonl",
+      "markdown_file": "md\\p001-sonrisa\\s0019.md",
+      "pdf_file": "pdf\\p001-sonrisa\\s0019.pdf",
+      "raw_export_file": "",
+      "raw_export_name": "",
+      "raw_sha256": "",
+      "raw_size_bytes": null,
+      "snapshot_status": "NOT_INCLUDED",
+      "raw_copy_status": "NOT_INCLUDED",
+      "raw_verified_at": null,
+      "source_snapshot_before_size_bytes": null,
+      "source_snapshot_before_mtime_ms": null,
+      "source_snapshot_after_size_bytes": null,
+      "source_snapshot_after_mtime_ms": null,
+      "jsonl_line_count": 17,
+      "parsed_event_count": 17,
+      "invalid_jsonl_line_count": 0
+    }
+  ]
+}
