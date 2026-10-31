@@ -1,6 +1,6 @@
 # Implementation status / human review log
 
-**Current phase:** 01 — AWAITING HUMAN VALIDATION. Phase 00 remains APPROVED. No subsequent phase has been started.
+**Current phase:** 01 — APPROVED (human validated on 2026-10-31). Phase 00 remains APPROVED. Awaiting explicit instructions before Phase 02; no subsequent phase has been started.
 
 Append for each phase:
 
@@ -54,7 +54,7 @@ Only developer-provided approval may change the phase to `APPROVED`.
 
 ## Phase 01 — Authentication and authorization
 
-- Status: `AWAITING HUMAN VALIDATION` — implementation and local verification completed on 2026-10-31; no phase approval recorded.
+- Status: `APPROVED` — human tests confirmed by the developer on 2026-10-31.
 - Scope delivered:
   - ASP.NET Core Identity with PostgreSQL EF persistence, `ApplicationUser.IsEnabled`, Admin role and minimal Identity-only migration. EF CLI is pinned in a repository-local tool manifest. Domain schema remains Phase 02 work.
   - Same-origin cookie login/logout, CSRF token endpoint, protected session/user proof (`GET /api/auth/me`) and server-protected admin probe (`GET /api/admin/probe`). No public registration route or account management features.
@@ -95,4 +95,4 @@ Only developer-provided approval may change the phase to `APPROVED`.
   - Authentication: "approved" — same-origin cookie approach.
   - Disabled user: "disabling a user should block new requests as well as login processes."
   - No blocking Phase 01 questions remain. These decisions authorize implementation; they are not milestone acceptance.
-- Developer approval: **Pending.** Request explicit validation or Phase 01 feedback. Stop here; no subsequent phase is authorized or implemented, and no git commit was created.
+- Developer approval (2026-10-31): "Phase 01 human tests are confirmed, update the implementation status". Phase 01 is human validated and approved. No subsequent phase is authorized or implemented, and no git commit was created. Await explicit instructions before starting Phase 02.
