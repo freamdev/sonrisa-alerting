@@ -1,6 +1,6 @@
 # Phase 04 routing validation
 
-Phase 04 is awaiting human validation. It adds internal dispatch and fake senders only. No external DTO contract, HTTP dispatch endpoint, real Email/Slack I/O, source polling, management APIs or frontend is included.
+Phase 04 was explicitly approved by the developer on 2026-10-31. It adds internal dispatch and fake senders only. No external DTO contract, HTTP dispatch endpoint, real Email/Slack I/O, source polling, management APIs or frontend is included. Phase 05 has not started and requires a separate explicit instruction.
 
 ## Run the acceptance checks
 

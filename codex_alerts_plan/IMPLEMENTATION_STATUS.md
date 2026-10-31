@@ -1,6 +1,6 @@
 # Implementation status / human review log
 
-**Current phase:** 04 - AWAITING HUMAN VALIDATION (2026-10-31). Phases 00, 01, 02 and 03 remain APPROVED. Phase 05 and all subsequent phases are NOT STARTED and are not authorized. Stop for explicit Phase 04 validation; approval alone does not authorize the next phase.
+**Current phase:** 04 - APPROVED (human approved on 2026-10-31). Phases 00, 01, 02 and 03 remain APPROVED. Next phase: 05 - NOT STARTED; awaiting explicit developer instructions. No subsequent phase is authorized or implemented.
 
 Append for each phase:
 
@@ -191,7 +191,7 @@ Only developer-provided approval may change the phase to `APPROVED`.
 
 ## Phase 04 - Alert routing, persistence, retry and fake senders
 
-- Status: `AWAITING HUMAN VALIDATION` (2026-10-31).
+- Status: `APPROVED` - explicitly approved by the developer on 2026-10-31.
 - Scope delivered:
   - Validated internal `AlertEvent` dispatch boundary, input copying and internal receipt timestamps. External REST DTO conversion remains Phase 06.
   - PostgreSQL transaction for the event and complete initial delivery snapshot; known external IDs return false without new deliveries. Only the specific external-ID unique constraint is treated as a duplicate race.
@@ -229,4 +229,4 @@ Only developer-provided approval may change the phase to `APPROVED`.
   - Prior Phase 03 human approval verified. Before coding, proposed persisted retries with startup/explicit scan, pre-send reservations and pending-on-disable behavior.
   - Developer (2026-10-31): "Instead of 1 second restart use some exponential delays between recalls, otherwise the plan is approved. Proceed with the implementation". Implemented bounded 1-second then 2-second exponential delays. This authorizes implementation, not completed-phase human acceptance.
   - No blocking questions remain and no subsequent phase was implemented. No commit created.
-- Developer approval: pending explicit human validation.
+- Developer approval (2026-10-31): "phase 04 is approved, edit status files". Phase 04 is human approved. Phase 05 remains NOT STARTED and requires a separate explicit implementation request. No commit created.

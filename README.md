@@ -1,6 +1,6 @@
 # Alerts
 
-A small modular monolith for topic-based notifications through independently selected delivery channels. Phases 00, 01, 02 and 03 are human validated and approved. Phase 04 adds persisted internal routing, bounded exponential retries and fake senders, and is awaiting human validation. See [Phase 04 invocation and validation](docs/phase04-routing.md).
+A small modular monolith for topic-based notifications through independently selected delivery channels. Phases 00 through 04 are human approved. Phase 04 adds persisted internal routing, bounded exponential retries and fake senders. Phase 05 has not started and awaits explicit developer instructions. See [Phase 04 invocation and validation](docs/phase04-routing.md).
 
 ## Run with Docker Compose
 
