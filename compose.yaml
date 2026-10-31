@@ -44,6 +44,14 @@ services:
       DevelopmentSeed__AdminPassword: ${DevelopmentSeed__AdminPassword:-}
       DevelopmentSeed__UserEmail: ${DevelopmentSeed__UserEmail:-}
       DevelopmentSeed__UserPassword: ${DevelopmentSeed__UserPassword:-}
+      Channels__Email__Host: ${Channels__Email__Host:-mailpit}
+      Channels__Email__Port: ${Channels__Email__Port:-1025}
+      Channels__Email__Security: ${Channels__Email__Security:-None}
+      Channels__Email__From: ${Channels__Email__From:-alerts@example.test}
+      Channels__Email__Username: ${Channels__Email__Username:-}
+      Channels__Email__Password: ${Channels__Email__Password:-}
+      Channels__Slack__WebhooksJson: ${Channels__Slack__WebhooksJson:-}
+      Channels__Slack__AllowLocalMock: ${Channels__Slack__AllowLocalMock:-false}
     ports:
       - "127.0.0.1:${API_PORT:-5165}:8080"
     depends_on:
@@ -58,6 +66,12 @@ services:
       retries: 12
       start_period: 10s
     restart: "no"
+
+  mailpit:
+    image: axllent/mailpit:v1.32.0
+    profiles: ["channels"]
+    ports:
+      - "127.0.0.1:${MAILPIT_UI_PORT:-8025}:8025"
 
 volumes:
   postgres-data:

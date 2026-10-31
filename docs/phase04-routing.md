@@ -1,6 +1,6 @@
 # Phase 04 routing validation
 
-Phase 04 was explicitly approved by the developer on 2026-10-31. It adds internal dispatch and fake senders only. No external DTO contract, HTTP dispatch endpoint, real Email/Slack I/O, source polling, management APIs or frontend is included. Phase 05 has not started and requires a separate explicit instruction.
+Phase 04 was explicitly approved by the developer on 2026-10-31. It added internal dispatch and fake senders only. This guide describes its isolated fake-based tests and routing policy. Phase 05 now replaces runtime fakes with adapters; see `phase05-channels.md` for configuration, sanitized failure codes and the controlled adapter demonstration. No external DTO contract, HTTP dispatch endpoint, source polling, management APIs or frontend is included.
 
 ## Run the acceptance checks
 
@@ -48,7 +48,7 @@ docker compose exec -T db psql -U alerts -d alerts -c 'SELECT "Id", "ExternalEve
 docker compose exec -T db psql -U alerts -d alerts -c 'SELECT "Id", "EventId", "UserId", "ChannelId", "Status", "AttemptCount", "LastError", "LastAttemptAt", "CompletedAt" FROM "Deliveries" ORDER BY "Id";'
 ```
 
-These queries are read-only; they do not create sample data. Inspect the in-memory fake call lists through `IEnumerable<IChannelSender>` in the same process, as the controlled test does. Fake success means the fake accepted the call, not an external notification.
+These queries are read-only; they do not create sample data. In isolated tests, inspect the in-memory fake call lists through `IEnumerable<IChannelSender>` in the same process, as the controlled test does. Runtime uses the Phase 05 adapters. Fake success means the fake accepted the call, not an external notification.
 
 ## Persistence and retry policy
 

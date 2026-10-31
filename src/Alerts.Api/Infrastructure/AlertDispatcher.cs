@@ -148,10 +148,10 @@ public sealed class AlertDispatcher(AlertsIdentityDbContext db, IEnumerable<ICha
                 delivery.CompletedAt = clock.GetUtcNow();
             }
             catch (OperationCanceledException) when (ct.IsCancellationRequested) { throw; }
-            catch (Exception)
+            catch (Exception ex)
             {
                 // Never persist or log raw provider exceptions, payloads or destinations.
-                delivery.LastError = "send_failed";
+                delivery.LastError = ex is ChannelDeliveryException failure ? failure.ErrorCode : "send_failed";
                 if (delivery.AttemptCount == 3)
                 {
                     delivery.Status = DeliveryStatus.Failed;

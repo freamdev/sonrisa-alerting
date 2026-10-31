@@ -1,6 +1,6 @@
 # Implementation status / human review log
 
-**Current phase:** 04 - APPROVED (human approved on 2026-10-31). Phases 00, 01, 02 and 03 remain APPROVED. Next phase: 05 - NOT STARTED; awaiting explicit developer instructions. No subsequent phase is authorized or implemented.
+**Current phase:** 05 - AWAITING HUMAN VALIDATION (2026-10-31). Phases 00 through 04 remain APPROVED. Phase 06 is NOT STARTED. No subsequent phase is authorized or implemented; stop for explicit developer validation.
 
 Append for each phase:
 
@@ -230,3 +230,49 @@ Only developer-provided approval may change the phase to `APPROVED`.
   - Developer (2026-10-31): "Instead of 1 second restart use some exponential delays between recalls, otherwise the plan is approved. Proceed with the implementation". Implemented bounded 1-second then 2-second exponential delays. This authorizes implementation, not completed-phase human acceptance.
   - No blocking questions remain and no subsequent phase was implemented. No commit created.
 - Developer approval (2026-10-31): "phase 04 is approved, edit status files". Phase 04 is human approved. Phase 05 remains NOT STARTED and requires a separate explicit implementation request. No commit created.
+
+## Phase 05 - Email and Slack channel adapters
+
+- Status: `AWAITING HUMAN VALIDATION` — implementation and local mocked acceptance checks completed on 2026-10-31; no completed-phase approval recorded.
+- Scope delivered:
+  - Runtime `IChannelSender` adapters for stable `email` and `slack` codes, replacing runtime recording fakes. Routing still uses normalized events and independent selections without referencing SMTP/Slack implementations. No schema/migration change.
+  - MailKit SMTP, current Identity email lookup per attempt, control-character-safe subject and plain-text MIME body, environment-managed sender/host/port/TLS/authentication, 30-second socket timeout and cancellation. Optional profile-enabled Mailpit sink with loopback Web UI.
+  - Per-application-user incoming Slack webhook mapping supplied as secret JSON configuration. HTTPS Slack host validation; explicit Development-only HTTP local mock opt-in. Redirects/cookies and default HttpClient URL logging disabled. Plain-text Slack blocks, escaped fallback, disabled parsing/unfurls and bounded content.
+  - Fixed sanitized destination/configuration/provider errors persisted through the existing dispatcher. The approved three-total-attempt policy and 1s/2s delays remain unchanged; cancellation and enablement semantics remain unchanged. No adapter-owned retry loops.
+  - Complete controlled local SMTP/HTTP fake demonstration through actual adapter DI, normalized-event dispatch and reopened delivery persistence. No external providers contacted, public ingestion endpoint, polling worker, management API, frontend or later-phase work added.
+- Changed files:
+  - Application: `src/Alerts.Api/Application/ChannelDeliveryError.cs`, `ChannelDeliveryException.cs`, boundary `README.md`.
+  - Adapters: `src/Alerts.Api/Infrastructure/Channels/AlertMessageFormatter.cs`, `EmailOptions.cs`, `SlackOptions.cs`, `IEmailTransport.cs`, `MailKitEmailTransport.cs`, `EmailChannelSender.cs`, `SlackChannelSender.cs`.
+  - Composition/failure mapping: `src/Alerts.Api/Infrastructure/RoutingSetup.cs`, `AlertDispatcher.cs`, `FakeChannelSender.cs`, Infrastructure `README.md`, `src/Alerts.Api/Program.cs`.
+  - Dependencies/configuration: `src/Alerts.Api/Alerts.Api.csproj`, `.env.example`, `compose.yaml`.
+  - Tests: new `tests/Alerts.UnitTests/ChannelSenderTests.cs`; existing startup recovery fixture in `RoutingTests.cs` explicitly supplies its test fake after runtime registration changed.
+  - Documentation: `docs/phase05-channels.md`, `docs/phase04-routing.md`, root `README.md`, `codex_alerts_plan/PROJECT_CONTEXT.md`, this log.
+- Tests executed and outcomes:
+  - SDK 10.0.403, shell-local CLI home/NuGet cache under ignored `.local/`.
+  - Initial `dotnet restore Alerts.sln` succeeded using available packages but flagged MailKit's transitive `System.Security.Cryptography.Pkcs` 10.0.0 with NU1902/NU1903 advisories. Explicitly pinned patched 10.0.14. Its first download was blocked by sandbox socket permissions; retried `dotnet restore Alerts.sln` with approved network escalation: passed without warnings.
+  - `dotnet format Alerts.sln --no-restore`: applied formatting. Final `dotnet format Alerts.sln --verify-no-changes --no-restore`: passed, exit 0.
+  - Final `dotnet build Alerts.sln --no-restore`: passed, zero warnings/errors. Two initial nullable warnings were corrected before this build.
+  - Final `dotnet test Alerts.sln --no-build`: passed all 76 tests, zero failures/skips (41 existing + 35 adapter cases). An earlier run passed 75 before adding explicit SMTP-command rejection coverage.
+  - `dotnet test tests/Alerts.UnitTests --no-build --filter FullyQualifiedName~ControlledAdaptersProduceTwoPersistedSuccessesWithLocalClientFakes --logger 'console;verbosity=detailed'`: passed. Output showed delivery 1 / Alice / Email / Succeeded / 1 attempt and delivery 2 / Alice / Slack / Succeeded / 1 attempt; SMTP fake captured `alice@example.test` and `[Alerts] Controlled sample`; HTTP fake captured the Slack POST with plain-text block. Secret webhook URL omitted from output.
+  - Coverage includes header injection, plain-text MIME/Slack formatting, per-user destination choice, updated Identity email, missing/invalid users/destinations, bad SMTP settings before network access, malformed webhook JSON, HTTPS/host restrictions, Development-only mock opt-in, HTTP rejection/redirect/rate limit/server error, SMTP rejection, provider timeouts, cancellation, three-attempt cap and safe persisted errors/logs, and two users sharing a Slack destination.
+  - `docker compose --env-file .env.example --profile channels config --quiet`: passed, exit 0. Docker emitted the existing inaccessible user config warning. No daemon operation, image pull, Compose startup or Mailpit socket send was performed in this phase; local mocks satisfy the agreed acceptance gate.
+  - `git -c safe.directory=D:/Temp/Sonrisa diff --check`: passed. Existing CRLF and unreadable user-ignore warnings are environmental; no global Git configuration changed.
+- Manual verification / human acceptance commands:
+  1. Follow `docs/phase05-channels.md`. Run `dotnet restore Alerts.sln`, `dotnet build Alerts.sln --no-restore`, `dotnet test Alerts.sln --no-build`, and `dotnet format Alerts.sln --verify-no-changes --no-restore`.
+  2. Run `dotnet test tests/Alerts.UnitTests --no-build --filter FullyQualifiedName~ControlledAdaptersProduceTwoPersistedSuccessesWithLocalClientFakes --logger 'console;verbosity=detailed'`. Expect the two persisted one-attempt successes and both captured formatted messages described above.
+  3. Run `dotnet test tests/Alerts.UnitTests --no-build --filter FullyQualifiedName~ChannelSenderTests --logger 'console;verbosity=detailed'` to review destination, sanitization and failure assertions. These tests use isolated EF InMemory and client fakes, with no network listener/provider credentials required.
+  4. Run `docker compose --env-file .env.example --profile channels config --quiet`. For optional live local-sink inspection, configure your ignored `.env` per the guide, run `docker compose --profile channels up --build --detach --wait --wait-timeout 180`, inspect `http://localhost:8025`, and use the documented internal dispatch invocation with eligible selections. Compose startup alone does not generate alerts. Do not print resolved secret configuration. Existing PostgreSQL inspection commands in the Phase 04 guide remain applicable.
+  5. Review credentials, per-user webhook mapping and the shared-destination production decision. Give explicit Phase 05 approval or corrections; no later phase may start without a separate explicit request.
+- Known limitations / tradeoffs:
+  - Acceptance uses a fake SMTP transport and HTTP handler; real MailKit SMTP connection/authentication, Mailpit image startup and Slack delivery are not exercised automatically or claimed validated. No E2E/external-provider suite introduced.
+  - Slack destinations are configured by server operators using application user IDs, not self-service. Configuration changes require API restart/recreation. No Slack DMs/OAuth, webhook provisioning or destination persistence/UI is implemented.
+  - **Before production, clarify shared Slack channel deduplication and destination ownership/access/management.** For the MVP, separate eligible users intentionally create separate messages even when their webhooks target the same Slack channel.
+  - All provider/configuration failures use the existing bounded retries, including 4xx/429 and missing configuration; no permanent/transient classification, Retry-After handling or resetting final failures. Success means provider acceptance, not guaranteed human receipt. Slack content is truncated to one section; Email retains full plain text.
+  - Mailpit is optional and ephemeral. Its profile must be started when using the default Compose SMTP hostname; host-run SMTP requires a local loopback port override. `None` SMTP security and local HTTP mocks are Development-only. Production deployment remains outside this phase.
+  - Existing single-process sequential dispatch, startup-only recovery, conservative attempt reservations and possible duplicate side effects after a crash remain the Phase 04 limitations. Previously pending eligible deliveries can now use configured adapters at startup.
+- Developer questions / decisions:
+  - Requested path `phases/04-channels.md` does not exist. Used the existing Phase 05 source of truth `codex_alerts_plan/phases/05-channels.md`, as explained before coding. Verified Phase 04 approval.
+  - Proposed adapters, shared formatting, safe failure mapping, environment configuration and local mocked validation before coding; asked the three blocking transport/destination questions.
+  - Developer (2026-10-31): "a webhook targetting a channel is fine, if multiple user sets the same channel we can let the system send multiple messages for now, write it up as a design decession that this needs to be cleared before production"; "Mailkit and Mailpit is perfect"; "local fake mocked systems are acceptedable for the MVP". Implemented the proposed server-owned per-user mapping and Identity email contract.
+  - No blocking questions remain. No commit created and no subsequent phase implemented.
+- Developer approval: pending. Stop for explicit human validation; do not mark Phase 05 approved or start Phase 06.

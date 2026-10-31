@@ -3,7 +3,7 @@ using Alerts.Api.Application;
 
 namespace Alerts.Api.Infrastructure;
 
-// No provider I/O. Phase 05 will supply real adapters after destinations are agreed.
+// Recording adapter for isolated tests; never registered by the runtime.
 public sealed class FakeChannelSender(string channelCode) : IChannelSender
 {
     private readonly ConcurrentQueue<DeliveryMessage> calls = new();
