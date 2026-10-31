@@ -1,6 +1,6 @@
 # Implementation status / human review log
 
-**Current phase:** 06 - APPROVED (human approved on 2026-10-31). Phases 00 through 05 remain APPROVED. Phase 07 is NOT STARTED; no subsequent phase is authorized or implemented. The post-MVP Slack full-content/multiple-message validation item remains deferred.
+**Current phase:** 07 - AWAITING HUMAN VALIDATION. Phases 00 through 06 remain APPROVED. No subsequent phase is authorized or implemented. The post-MVP Slack full-content/multiple-message validation item remains deferred.
 
 Append for each phase:
 
@@ -326,3 +326,46 @@ Only developer-provided approval may change the phase to `APPROVED`.
   - No blocking questions or scope deviations remain. Human validation approved; no later phase started.
 - Developer approval (2026-10-31): "phase 06 manual test is approved". Phase 06 is human approved. Phase 07 requires a separate explicit implementation request.
 - Approval bookkeeping: documentation only; no runtime changes or test rerun. Git whitespace check passed.
+
+## Phase 07 - Personal and admin HTTP APIs
+
+- Status: `AWAITING HUMAN VALIDATION`. Implementation authorization and the decisions below are not completed-phase approval. No Phase 08 work or commit created.
+- Scope delivered:
+  - Authenticated `/api/me` catalogs, independent selection arrays, and idempotent topic/channel PUT/DELETE. Personal ownership always comes from the server-side Identity session. Admins retain personal access.
+  - Admin-only safe user listing, enable/disable and hard deletion using Identity with the approved PostgreSQL cascade policy; global topic/channel listing and enable/disable. No user/catalog creation, role editing, destination UI or per-topic/channel preference matrix.
+  - Disabled catalogs stay visible with their status. New disabled selections return 409; existing selections remain, repeat PUTs remain idempotent, and removal is allowed. Enablement never auto-subscribes users. Existing dispatcher enablement checks remain unchanged.
+  - Prevented admin self-disable/delete; explicit boolean enablement validation, positive catalog IDs, safe custom errors/statuses, no-store management responses and CSRF protection on every mutation.
+  - Development-only `/openapi/v1.json` via the supported Microsoft.AspNetCore.OpenApi 10.0.14 package; summaries, safe DTO schemas, mutation statuses and cookie/CSRF usage descriptions. No Swagger UI package.
+- Changed files:
+  - Host/API: `src/Alerts.Api/ManagementEndpoints.cs`, `Program.cs`, `Alerts.Api.csproj`.
+  - Selection contract/implementation: `Application/SelectionUnavailableException.cs`, `Application/ISelectionService.cs`, `Infrastructure/SelectionService.cs`, `Application/README.md` under `src/Alerts.Api/`.
+  - Tests: new `tests/Alerts.UnitTests/ManagementTests.cs`; `AuthTests.cs` adds optional catalog initialization before creating Identity users in the shared test host.
+  - Documentation: `docs/phase07-api.md`, root `README.md`, `codex_alerts_plan/PROJECT_CONTEXT.md`, this log. No schema/migration/configuration/frontend changes.
+- Tests executed and outcomes:
+  - .NET SDK 10.0.403; shell-local CLI home/NuGet cache under ignored `.local/`. `dotnet restore Alerts.sln`: passed without warnings or escalation.
+  - Final `dotnet build Alerts.sln --no-restore`: passed, zero warnings/errors. `dotnet format Alerts.sln --no-restore` applied formatting; final `dotnet format Alerts.sln --verify-no-changes --no-restore`: passed, exit 0.
+  - Final `dotnet test Alerts.sln --no-build`: passed all 156 tests (103 prior + 53 new), zero failures/skips, approximately 2 minutes.
+  - Initial 156-test run: 140 passed / 16 failed due to the new fixture initializing catalog seeds after Identity had already created the InMemory store. Corrected initialization order and the test's TestServer service lookup. A build attempted during that run failed on the Windows test-assembly lock; rerun after completion passed. Next suite run: 154 passed / 2 failed because an assertion expected the exact cache string rather than allowing Identity's additional `no-cache` directive. Changed it to assert the required `NoStore` flag, retaining the security behavior.
+  - Focused OpenAPI Development/Production/Staging test: passed all 3 cases. Automated cases cover every management route's authentication, every admin role boundary, CSRF on each mutation, session-derived ownership for user/admin, independent/idempotent preferences, disabled catalog behavior, validation/statuses, safe user fields, self-action guards, enable/delete session enforcement, deletion cascade model metadata and API global flags affecting the real dispatcher. All use isolated test stores/client fakes; no E2E/external-provider suite added.
+  - `docker compose --env-file .env.example --profile channels config --quiet`: passed. Final `git -c safe.directory=D:/Temp/Sonrisa diff --check`: passed, exit 0. Existing unreadable user config/ignore and CRLF warnings remain environmental.
+  - Isolated live stack: `docker compose --project-name alerts-phase07 --env-file .local/phase07/validation.env -f compose.yaml -f .local/phase07/compose.override.yaml --profile channels up --build --detach --wait --wait-timeout 180`: built and started successfully after correcting the locally generated environment file and recreating only this newly created disposable stack/volume. API port 15175, Mailpit port 18035, separate fixture mount, fresh project-specific PostgreSQL volume and generated ignored credentials; no existing application data touched. Docker daemon access required approved escalation; no automatic approval rejection.
+  - `powershell -NoProfile -ExecutionPolicy Bypass -File .local/phase07/check-api.ps1`: passed local API scenario, using a process-only script policy override after the shell initially refused to run the local validation script. Confirmed anonymous 401, regular-user admin 403, missing-CSRF 400, independent topic/channel changes, admin personal operations, self-action 409, disabled selection 409, user disable/re-enable/login behavior, and local polling/Mailpit suppression/recovery. No persistent PowerShell policy changed.
+  - New disabled-topic event: stored with zero deliveries/Mailpit messages. Re-enabled topic with a new external ID: one delivery/Mailpit message. Selections configured exclusively through HTTP, with no setup SQL.
+  - Real deletion: before HTTP DELETE, SQL counts were users=2, topic selections=1, channel selections=1, deliveries=1, shared events=2, topics=3, channels=2. DELETE returned 204; existing deleted-user session returned 401. Afterward: users=1, selections=0+0, deliveries=0; shared events=2/topics=3/channels=2 retained. SQL was passed through psql stdin after an initial Windows command-line quoting error. This verifies actual PostgreSQL cascades, which InMemory cannot prove.
+  - Isolated `alerts-phase07` services stopped successfully with `docker compose ... --profile channels stop`. Its volume and ignored `.local/phase07` validation scripts/files remain for inspection; no tracked fixture changes. Temporary scripts are manual validation artifacts, not an installed E2E suite.
+- Exact human-validation commands:
+  1. Follow `docs/phase07-api.md`. Run `dotnet restore Alerts.sln`, `dotnet build Alerts.sln --no-restore`, `dotnet test Alerts.sln --no-build`, and `dotnet format Alerts.sln --verify-no-changes --no-restore` from the root.
+  2. Run `dotnet test tests/Alerts.UnitTests --no-build --filter FullyQualifiedName~ManagementTests` for the focused API acceptance cases.
+  3. Configure your local `.env` and disposable seeded accounts. Run `docker compose --profile channels up --build --detach --wait --wait-timeout 180`. Import `http://localhost:5165/openapi/v1.json` into an API client, or run the guide's PowerShell login and mutation examples with separate user/admin cookie sessions. Retrieve CSRF after login. Expect independent arrays, regular-user admin denial, admin personal access, safe catalog/user fields, disabled selection guards and self-action rejection.
+  4. Use fresh fixture IDs per the guide/Phase 06 instructions to verify disabled topic/channel/user suppression and re-enable behavior. Inspect local Mailpit and PostgreSQL. Finally delete only a disposable test user through the API and verify dependent row removal/shared data retention with the documented SQL; confirm its previous session receives 401.
+  5. Give explicit Phase 07 approval or corrections. Do not start Phase 08 without a separate explicit request.
+- Known limitations / tradeoffs:
+  - Minimal unpaginated user/catalog lists for this small MVP; no account creation/invitations, roles, catalogs, delivery-history APIs or destination management added beyond the specified operations. Admins may manage other admins; the agreed guard is self-action prevention.
+  - InMemory tests check authorization/behavior and cascade model configuration; live isolated PostgreSQL validation supplies actual cascade evidence. No automated relational/external-provider suite introduced; live Slack remains outside this phase.
+  - Existing in-flight requests/provider sends are not cancelled by later enablement changes/deletion. Concurrent requests are not a distributed transaction; existing single-process routing, pending recovery, retry and crash-side-effect limitations remain. Re-enable does not reroute already stored event IDs.
+  - Development seeding can recreate a deleted seeded account with a new ID on restart; finish deletion checks before restarting or disable seeding. OpenAPI is generated JSON for import; no interactive documentation UI added.
+- Developer questions / decisions:
+  - Requested `phases/04-api.md` does not exist. Used actual `codex_alerts_plan/phases/07-api.md`, explained before coding, consistent with the explicit Phase 07 assignment. Verified Phase 06 human approval and clean initial worktree.
+  - Explained the plan and existing relevant code before editing. Asked two blocking behavior questions and waited. Developer on 2026-10-31 selected "Reject new selections while disabled; allow removal (Recommended)" and "Prevent self-disable and self-delete (Recommended)". Implemented both and recorded them in project context.
+  - No blocking questions or scope deviations remain. No subsequent phase implemented; no commit created.
+- Developer approval: pending explicit Phase 07 human validation.

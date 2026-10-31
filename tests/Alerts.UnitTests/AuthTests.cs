@@ -123,7 +123,7 @@ internal sealed class AuthHost(WebApplication app, HttpClient client, string pas
     public IConfiguration Configuration => app.Configuration;
     public IWebHostEnvironment Environment => app.Environment;
 
-    public static async Task<AuthHost> CreateAsync(bool admin = false, string environment = "Development")
+    public static async Task<AuthHost> CreateAsync(bool admin = false, string environment = "Development", bool seedCatalog = false)
     {
         var database = Guid.NewGuid().ToString();
         var app = Program.BuildApplication(["--environment", environment], builder =>
@@ -140,6 +140,8 @@ internal sealed class AuthHost(WebApplication app, HttpClient client, string pas
         client.BaseAddress = new Uri("https://localhost");
         var host = new AuthHost(app, client, $"Test!aA1{Guid.NewGuid():N}");
         using var scope = app.Services.CreateScope();
+        if (seedCatalog)
+            await scope.ServiceProvider.GetRequiredService<AlertsIdentityDbContext>().Database.EnsureCreatedAsync();
         var users = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
         Assert.True((await users.CreateAsync(new ApplicationUser { UserName = Email, Email = Email }, host.Password)).Succeeded);
         if (admin)

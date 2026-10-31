@@ -20,9 +20,12 @@ public sealed class SelectionService(AlertsIdentityDbContext db) : ISelectionSer
     public async Task SetTopicAsync(string userId, int topicId, bool selected, CancellationToken cancellationToken = default)
     {
         await RequireUserAsync(userId, cancellationToken);
-        if (!await db.Topics.AnyAsync(x => x.Id == topicId, cancellationToken))
+        var topic = await db.Topics.AsNoTracking().SingleOrDefaultAsync(x => x.Id == topicId, cancellationToken);
+        if (topic is null)
             throw new KeyNotFoundException("Topic does not exist.");
         var selection = await db.UserTopicSelections.FindAsync([userId, topicId], cancellationToken);
+        if (selected && selection is null && !topic.IsEnabled)
+            throw new SelectionUnavailableException();
         if (selected && selection is null)
             db.UserTopicSelections.Add(new UserTopicSelection { UserId = userId, TopicId = topicId });
         else if (!selected && selection is not null)
@@ -33,9 +36,12 @@ public sealed class SelectionService(AlertsIdentityDbContext db) : ISelectionSer
     public async Task SetChannelAsync(string userId, int channelId, bool selected, CancellationToken cancellationToken = default)
     {
         await RequireUserAsync(userId, cancellationToken);
-        if (!await db.Channels.AnyAsync(x => x.Id == channelId, cancellationToken))
+        var channel = await db.Channels.AsNoTracking().SingleOrDefaultAsync(x => x.Id == channelId, cancellationToken);
+        if (channel is null)
             throw new KeyNotFoundException("Channel does not exist.");
         var selection = await db.UserChannelSelections.FindAsync([userId, channelId], cancellationToken);
+        if (selected && selection is null && !channel.IsEnabled)
+            throw new SelectionUnavailableException();
         if (selected && selection is null)
             db.UserChannelSelections.Add(new UserChannelSelection { UserId = userId, ChannelId = channelId });
         else if (!selected && selection is not null)

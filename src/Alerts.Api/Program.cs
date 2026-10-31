@@ -40,6 +40,8 @@ public static class Program
         builder.Services.AddAlertRouting(builder.Configuration);
         builder.Services.AddNewsPolling(builder.Configuration);
         builder.Services.AddHealthChecks();
+        if (builder.Environment.IsDevelopment())
+            builder.Services.AddOpenApi();
         configure?.Invoke(builder);
         var app = builder.Build();
         if (!app.Environment.IsDevelopment())
@@ -49,7 +51,10 @@ public static class Program
         }
         app.UseAuthentication();
         app.UseAuthorization();
+        if (app.Environment.IsDevelopment())
+            app.MapOpenApi();
         app.MapAuthEndpoints();
+        app.MapManagementEndpoints();
         app.MapDevelopmentNews();
         app.MapHealthChecks("/health").AllowAnonymous();
         return app;
