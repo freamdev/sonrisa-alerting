@@ -1,6 +1,6 @@
 # Implementation status / human review log
 
-**Current phase:** 03 - AWAITING HUMAN VALIDATION (2026-10-31). Phases 00, 01 and 02 remain APPROVED. Phase 03 implementation/testing is complete; stop for explicit developer validation. No subsequent phase has been started.
+**Current phase:** 03 - APPROVED (human validated on 2026-10-31). Phases 00, 01 and 02 remain APPROVED. Next phase: 04 - NOT STARTED; awaiting explicit developer instructions. No subsequent phase is authorized or implemented.
 
 Append for each phase:
 
@@ -148,7 +148,7 @@ Only developer-provided approval may change the phase to `APPROVED`.
 
 ## Phase 03 - Docker Compose developer environment
 
-- Status: `AWAITING HUMAN VALIDATION` (2026-10-31).
+- Status: `APPROVED` - manual human testing completed and approved by the developer on 2026-10-31.
 - Scope delivered:
   - Multi-stage .NET 10 Release image, minimal build context excluding secrets/generated artifacts, non-root runtime and curl liveness probe.
   - Official PostgreSQL 17, named persistent volume, no DB host port, loopback-only configurable API port. PostgreSQL health gates a one-shot migration service; successful migrations gate API startup. Bounded health retries and nonzero bootstrap failures avoid assuming ordinary depends_on implies readiness or restarting indefinitely.
@@ -187,4 +187,4 @@ Only developer-provided approval may change the phase to `APPROVED`.
   - Existing untracked Phase 02 conversation records left untouched. No commit created.
 - Developer questions / decisions:
   - No blocking questions or scope deviations. Previous Phase 02 approval verified before coding. Explicit one-shot development migrations chosen to preserve the prior explicit migration workflow. Future source/destination decisions remain deferred to their assigned phases.
-- Developer approval: pending. Stop for explicit Phase 03 validation/feedback; Phase 04 is not authorized or implemented.
+- Developer approval (2026-10-31): "manual human testing is done, approve the changes and edit the status files for the next phase, do not start phase 4". Phase 03 is human validated and approved. Phase 04 remains NOT STARTED and requires a separate explicit implementation request. No commit created.

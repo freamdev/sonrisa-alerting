@@ -1,6 +1,6 @@
 # Alerts
 
-A small modular monolith for topic-based notifications through independently selected delivery channels. Phases 00, 01 and 02 are human validated and approved. Phase 02 adds domain persistence. Phase 03 adds the Docker Compose environment and is awaiting human validation.
+A small modular monolith for topic-based notifications through independently selected delivery channels. Phases 00, 01, 02 and 03 are human validated and approved. Phase 02 adds domain persistence; Phase 03 adds the Docker Compose environment. Phase 04 has not started and awaits explicit developer instructions.
 
 ## Run with Docker Compose
 
