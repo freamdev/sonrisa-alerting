@@ -1,0 +1,16 @@
+**/bin/
+**/obj/
+TestResults/
+**/TestResults/
+.local/
+.vs/
+.idea/
+*.user
+*.suo
+.env
+.env.*
+!.env.example
+**/appsettings.Local.json
+node_modules/
+dist/
+.angular/

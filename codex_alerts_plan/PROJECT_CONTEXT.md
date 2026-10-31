@@ -29,7 +29,7 @@ Build a small Docker-runnable web application in which authenticated users subsc
 
 - Backend: .NET / ASP.NET Core, EF Core and ASP.NET Core Identity, simple modular monolith with separable domain/application/infrastructure concerns.
 - Frontend: simple Angular SPA for personal and admin views; avoid unnecessary frameworks or elaborate state management.
-- Database: relational SQL DB. **Provider is not yet specified**; ask the developer to select SQL Server vs PostgreSQL (or approved alternative) at project initialization, before binding EF migrations and Compose to one provider.
+- Database: **PostgreSQL**, explicitly selected by the developer on 2026-10-31 during Phase 00. Provider packages, EF migrations and Compose remain work for their assigned phases.
 - Runtime: Docker and Docker Compose; official DB image; easy documented fresh checkout startup; environment-based configuration/secrets.
 - Logging/operations: structured logging and `/health` endpoint, no elaborate monitoring stack.
 - Tests: automated unit tests for payload normalization, topic/channel matching, authorization boundaries/policies, failure/retry and simple duplicate-ID handling. Use focused provider-client fakes. Full E2E and real-provider integration tests are **out of scope**.
@@ -37,7 +37,7 @@ Build a small Docker-runnable web application in which authenticated users subsc
 
 ## Unresolved choices — ask at the phase that needs them
 
-1. SQL database provider: **Phase 0/1**. Do not quietly decide based on preference.
+1. SQL database provider: **RESOLVED in Phase 00** — PostgreSQL, explicitly selected by the developer on 2026-10-31. .NET 10 LTS, Angular 22 and the repository-root layout were also accepted. Upgrade the detected Node.js 18.14.2 to a supported version before initializing Angular in Phase 08; handle the upgrade if feasible or remind the developer then.
 2. Login delivery and local dev bootstrap (cookie authentication with same-origin deployment is a sensible default; confirm account creation/seed admin, and disabled-user sign-in behavior): **Phase 1**.
 3. External source JSON example/REST contract, event topic mapping and timestamp meaning: **Phase 4 or 6**, before implementing mapping, if not already specified. For a mock, propose a minimal contract and get agreement.
 4. Slack destinations: per-user Slack DM vs channel/webhook; who configures credentials and destinations. Email SMTP/dev mail sink choice: **Phase 5**. This affects whether Slack can truly reach an individual user's selection, so must be agreed explicitly.
