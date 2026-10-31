@@ -1,6 +1,6 @@
 # Implementation status / human review log
 
-**Current phase:** 01 — APPROVED (human validated on 2026-10-31). Phase 00 remains APPROVED. Awaiting explicit instructions before Phase 02; no subsequent phase has been started.
+**Current phase:** 02 — AWAITING HUMAN VALIDATION (2026-10-31). Phases 00 and 01 remain APPROVED. Phase 02 implementation was explicitly authorized; no subsequent phase has been started.
 
 Append for each phase:
 
@@ -96,3 +96,52 @@ Only developer-provided approval may change the phase to `APPROVED`.
   - Disabled user: "disabling a user should block new requests as well as login processes."
   - No blocking Phase 01 questions remain. These decisions authorize implementation; they are not milestone acceptance.
 - Developer approval (2026-10-31): "Phase 01 human tests are confirmed, update the implementation status". Phase 01 is human validated and approved. No subsequent phase is authorized or implemented, and no git commit was created. Await explicit instructions before starting Phase 02.
+
+## Phase 02 — Domain persistence and migrations
+
+- Status: `AWAITING HUMAN VALIDATION` — implementation complete on 2026-10-31; developer validation remains pending.
+- Scope delivered:
+  - Extended the existing PostgreSQL Identity context and migration chain with Topic, Channel, independent UserTopicSelection/UserChannelSelection, AlertEvent and Delivery. Existing `ApplicationUser.IsEnabled` and authentication behavior retained.
+  - Fixed catalog seeds: Finance, Politics, Weather; Email and Slack. Stable unique codes and global enable flags. Seeds create no personal selections and do not reset catalog enablement on migration reruns/startup.
+  - Composite selection primary keys, unique external event ID, unique event/user/channel delivery, FK indexes, delivery status/attempt index and DB checks for status values and attempts 0..3. UTC timestamps and bounded error-summary storage; no routing or retry engine yet.
+  - Scoped internal `ISelectionService`/EF implementation for reading and independently adding/removing selections. Repeated sequential operations are idempotent; invalid user/catalog references are rejected. Global enablement does not rewrite personal preferences.
+  - Approved hard-delete policy enforced through user FK cascades for personal selections and deliveries; shared events/topics/channels retained. Referenced shared records use restrictive deletion.
+- Changed files:
+  - Models/contracts: individual `src/Alerts.Api/Domain/Topic.cs`, `Channel.cs`, `UserTopicSelection.cs`, `UserChannelSelection.cs`, `AlertEvent.cs`, `Delivery.cs`, standalone `DeliveryStatus.cs`, and `src/Alerts.Api/Application/ISelectionService.cs`.
+  - Persistence/DI: `src/Alerts.Api/Infrastructure/SelectionService.cs`, `Infrastructure/Identity/AlertsIdentityDbContext.cs`, `CatalogConfigurations.cs`, `IdentitySetup.cs`.
+  - Migration: `src/Alerts.Api/Infrastructure/Identity/Migrations/20261031113846_DomainPersistence.cs`, its `.Designer.cs`, and the existing model snapshot.
+  - Tests: `tests/Alerts.UnitTests/SelectionTests.cs` (five new tests).
+  - Documentation: `docs/phase02-data.md`, `docs/phase02-validation.sql`, `docs/phase01-auth.md`, root `README.md`, Domain/Application/Infrastructure boundary READMEs, `codex_alerts_plan/PROJECT_CONTEXT.md`, this log.
+- Tests executed and outcomes:
+  - Existing cached dependencies/tool versions retained; no package changes or new restore required. Shell-local `DOTNET_CLI_HOME`/`NUGET_PACKAGES` under ignored `.local/`.
+  - `dotnet build Alerts.sln --no-restore`: final run passed, zero warnings/errors. An initial misplaced using directive was corrected before the passing builds.
+  - `dotnet test Alerts.sln --no-build`: final run passed, 17 tests, zero failures/skips. Includes all 12 existing auth/seed/host cases plus independent persistence across contexts, repeatability/user isolation, invalid references, global flags, catalog seeds and initial delivery state. EF InMemory verifies use cases only, not relational integrity.
+  - `dotnet format Alerts.sln --no-restore` applied formatting; `dotnet format Alerts.sln --verify-no-changes --no-restore` passed, exit 0.
+  - `dotnet ef migrations add DomainPersistence --project src/Alerts.Api --output-dir Infrastructure/Identity/Migrations --no-build`: generated successfully after supplying the required connection-string configuration; generation does not connect to the database.
+  - Disposable PostgreSQL 17 container: `dotnet ef database update --project src/Alerts.Api --no-build` applied both migrations to a fresh DB. Repeat passed with already-up-to-date result; `dotnet ef migrations has-pending-model-changes --project src/Alerts.Api --no-build` reported no changes. The first history-table lookup logged a missing table before successful fresh initialization.
+  - `dotnet ef migrations script --idempotent --project src/Alerts.Api --no-build --output .local/phase02-migrations.sql`: passed. Executed the generated SQL twice against the migrated database: both passed without duplicates.
+  - `Get-Content -Raw docs/phase02-validation.sql | docker exec --interactive alerts-phase02-validation psql -U postgres -d alerts`: passed. Checks catalog seeds, independent adding/removing, unique codes/selections/events/deliveries, FKs, attempts -1/4 rejection and 3 acceptance, invalid status rejection, restrictive shared-record deletion and user cascades preserving another user's delivery. All row changes rolled back. An initial PostgreSQL array-type comparison in the validation script was corrected with explicit text casts, then the complete script passed.
+  - Real seeded backend against migrated PostgreSQL: regular user login 204, `me` 200, admin probe 403; admin login 204, `me` 200, admin probe 200. Host stopped, disposable container removed and temporary connection-string file deleted. Random validation credentials were never committed or printed.
+  - Docker/loopback checks used approved sandbox escalation; no Compose, E2E suite or external-provider integration tests introduced.
+  - `git -c safe.directory=D:/Temp/Sonrisa diff --check`: passed. Ownership override remains command-local; existing user-ignore permission/line-ending warnings are environmental.
+- Manual verification steps and results:
+  - Exact PowerShell setup, migrate/rerun, build/test/format, idempotent SQL and rollback-only schema validation commands: `docs/phase02-data.md`. All substantive checks above executed successfully.
+  - Inspect the migration/schema and independent selection tables; run `docs/phase02-validation.sql` against a fresh migrated validation DB. Expect its PASS notice. The application-service add/remove demonstration is `SelectionTests.SelectionsAreIndependentRepeatablePersistedAndIsolatedByUser`.
+  - Repeat Phase 01 credential/bootstrap/API checks using the Phase 02 DB connection/container, as described in the Phase 02 guide. Existing disabled-session, lockout, CSRF and role-change checks remain covered by the automated auth suite.
+- Known limitations / tradeoffs:
+  - One existing Identity-named context owns the complete schema, minimizing churn and preserving the migration chain. Domain models have no EF/framework dependencies.
+  - Catalog reference seeds apply in every environment through explicit migrations. They create no accounts or preferences; account bootstrap remains Development-only/opt-in.
+  - Internal selection operations take user IDs; future HTTP endpoints must derive these from the principal and enforce authorization/CSRF. Concurrent duplicate adds can raise a DB uniqueness conflict; sequential reruns are idempotent.
+  - DB constraints validate delivery storage only; state transitions, actual send attempt limits, safe provider-error mapping and enablement enforcement at send time remain Phase 04/05 work. No sender currently writes error data.
+  - No APIs for selections/deletion, no actual event ingestion/routing, senders, polling, UI, health or Compose. No later phase started. Rolling back the domain migration drops domain data; migrations are explicit.
+- Developer questions / decisions:
+  - Developer (2026-10-31): "The plan and the user deletion policy is approved, proceed with the implementation". This approves implementation and hard-delete cascades for selections/deliveries while retaining shared events/topics/channels; it does not approve the completed milestone.
+  - No unresolved blocking Phase 02 questions or scope deviations. Delivery destinations and external source contract remain future-phase decisions.
+- Developer approval: Pending. STOP for explicit human validation or Phase 02 feedback. No commit created and no authorization assumed for Phase 03.
+
+### Phase 02 review correction — separate model files (2026-10-31)
+
+- Developer requested separate files for persistence models and enums for readability.
+- Replaced `Domain/PersistenceModels.cs` with `Topic.cs`, `Channel.cs`, `UserTopicSelection.cs`, `UserChannelSelection.cs`, `AlertEvent.cs`, `Delivery.cs`, and standalone `DeliveryStatus.cs`. Namespaces, members and persistence behavior are unchanged.
+- Verification: `dotnet build Alerts.sln --no-restore` passed with zero warnings/errors; `dotnet test Alerts.sln --no-build` passed all 17 tests; `dotnet format Alerts.sln --verify-no-changes --no-restore` passed; `dotnet ef migrations has-pending-model-changes --project src/Alerts.Api --no-build` reported no model changes; `git -c safe.directory=D:/Temp/Sonrisa diff --check` passed.
+- Phase 02 remains `AWAITING HUMAN VALIDATION`. No subsequent phase started.

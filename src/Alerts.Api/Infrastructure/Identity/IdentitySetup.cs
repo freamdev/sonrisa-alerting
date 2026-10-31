@@ -25,6 +25,7 @@ public static class IdentitySetup
             .AddDefaultTokenProviders();
 
         services.AddScoped<EnabledCookieEvents>();
+        services.AddScoped<ISelectionService, SelectionService>();
         services.Configure<SecurityStampValidatorOptions>(options =>
             options.ValidationInterval = TimeSpan.Zero);
         services.ConfigureApplicationCookie(options =>

@@ -1,6 +1,6 @@
 # Alerts
 
-A small modular monolith for topic-based notifications through independently selected delivery channels. Phase 01 adds backend Identity authentication and authorization to the approved Phase 00 scaffold. It is awaiting human validation.
+A small modular monolith for topic-based notifications through independently selected delivery channels. Phases 00 and 01 are approved. Phase 02 adds domain persistence and is awaiting human validation.
 
 ## Decisions and layout
 
@@ -11,9 +11,9 @@ Alerts.sln
 global.json
 src/Alerts.Api/
   Program.cs                  # ASP.NET Core host / composition root
-  Domain/README.md            # Business vocabulary and invariants
-  Application/README.md       # Intended use cases and contracts
-  Infrastructure/Identity/    # Identity user, EF store, migration and development bootstrap
+  Domain/                    # Persistence models and business vocabulary
+  Application/               # Selection contract and access policies
+  Infrastructure/            # EF selection service and Identity/context/migrations
 tests/Alerts.UnitTests/       # Focused unit tests and host smoke test
 frontend/.gitkeep             # Angular placeholder only
 codex_alerts_plan/            # Requirements, phases, implementation status
@@ -34,9 +34,9 @@ dotnet test Alerts.sln --no-build
 dotnet format Alerts.sln --verify-no-changes --no-restore
 ```
 
-Follow [Phase 01 setup and API validation](docs/phase01-auth.md) to configure PostgreSQL, apply the migration, seed development accounts and run the host at `http://localhost:5165`. The document includes user/admin, CSRF, logout and disabled-account checks. `/health` is scheduled for Phase 03.
+Follow [Phase 02 schema and validation](docs/phase02-data.md) to configure PostgreSQL, apply/rerun migrations and inspect independent selections, uniqueness and deletion behavior. [Phase 01 API validation](docs/phase01-auth.md) covers development accounts and user/admin, CSRF, logout and disabled-account checks at `http://localhost:5165`. `/health` is scheduled for Phase 03.
 
-Tests cover host composition and authentication/authorization using an in-process TestServer, ephemeral encryption keys and an isolated EF InMemory test store. They open no network listener and do not test PostgreSQL relational guarantees. There are no E2E or external-provider test suites.
+Tests cover host composition, authentication/authorization, catalog seeds and independent selection operations using an in-process TestServer, ephemeral encryption keys and isolated EF InMemory stores. They open no network listener and do not test PostgreSQL relational guarantees; the Phase 02 guide includes a rollback-only manual SQL check. There are no E2E or external-provider test suites.
 
 If a restricted environment cannot write to the default .NET CLI home or NuGet cache, use these shell-local settings before the commands above (generated files are ignored):
 
@@ -52,6 +52,6 @@ $env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
 
 Angular 22 is recorded for Phase 08 only. The detected Node.js 18.14.2 cannot support it. Before initializing Angular in Phase 08, upgrade Node to a version supported by Angular 22 (currently Node ^22.22.3, ^24.15.0 or ^26.0.0), recheck the [official compatibility table](https://angular.dev/reference/versions), and handle the update locally if authorized and feasible; otherwise remind the developer. No Angular CLI, npm dependencies or frontend pages are installed now.
 
-Authentication uses same-origin cookies and CSRF protection, with no public registration. Admins retain ordinary user access. Disabled accounts cannot log in or use existing sessions. Admin-driven account creation/invitations and management APIs remain later work. Domain persistence, Docker Compose, routing, senders, polling and frontend features remain in their assigned phases; deletion/history semantics, destination settings and source payload remain decisions for those phases.
+Authentication uses same-origin cookies and CSRF protection, with no public registration. Admins retain ordinary user access. Disabled accounts cannot log in or use existing sessions. Domain persistence stores independent selections and minimum event/delivery state. Deleting an account cascades its selections and deliveries while retaining shared events/catalogs. Admin-driven account creation/invitations, management APIs, Docker Compose, routing, senders, polling and frontend features remain in their assigned phases; destination settings and source payload remain decisions for those phases.
 
 Read [the operating instructions](codex_alerts_plan/AGENTS.md), [project context](codex_alerts_plan/PROJECT_CONTEXT.md), [phase plan](codex_alerts_plan/PHASES.md), and [implementation status](codex_alerts_plan/IMPLEMENTATION_STATUS.md) before proceeding. Each phase requires explicit human validation; approval alone does not authorize the next phase.

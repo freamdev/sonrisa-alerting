@@ -1,6 +1,6 @@
 # Domain boundary and vocabulary
 
-This folder will contain business concepts without ASP.NET Core, EF Core, or external-provider dependencies. Phase 00 documents vocabulary only; identifiers, entities, validation and schema arrive in their assigned phases.
+This folder contains dependency-free topic/channel, selection, event and delivery models. EF mappings and constraints live in Infrastructure; routing, state transitions and retry behavior remain Phase 04 work. See `docs/phase02-data.md` for schema details.
 
 | Concept | Meaning |
 | --- | --- |
@@ -11,4 +11,4 @@ This folder will contain business concepts without ASP.NET Core, EF Core, or ext
 | `UserChannelSelection` | Independent user-to-channel preference, unique by user and channel. |
 | `Delivery` | One event/user/channel outcome with attempt count, timestamps and last error; unique by event, user and channel. At most three total send attempts. |
 
-Topic selections and channel selections are independent. Each eligible event expands across all of a user's selected, globally enabled channels. Zero topics or zero channels means no deliveries. Admin is a regular account with additional permissions. Disabled users, topics or channels prevent delivery. Duplicate external event IDs must not create new deliveries. Persistence and enforcement belong to later phases.
+Topic selections and channel selections are independent. The future router must expand each eligible event across all of a user's selected, globally enabled channels. Zero topics or zero channels means no deliveries. Admin is a regular account with additional permissions. Disabled users, topics or channels must prevent delivery. Persistence enforces unique external event IDs and event/user/channel deliveries; send-time enforcement remains Phase 04 work.

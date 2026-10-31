@@ -1,6 +1,6 @@
 # Phase 01 setup and validation
 
-Only Identity authentication/authorization is implemented. The developer approved development-only seeded admin/user accounts, same-origin cookies, no public registration, and blocking both login and subsequent requests when an account is disabled. Admin-added/invited users are a later management feature.
+Phase 01 covers Identity authentication/authorization. Phase 02 additionally supplies domain persistence; see [schema and migration validation](phase02-data.md). The developer approved development-only seeded admin/user accounts, same-origin cookies, no public registration, and blocking both login and subsequent requests when an account is disabled. Admin-added/invited users are a later management feature.
 
 ## Database and development bootstrap
 
@@ -34,7 +34,7 @@ $env:DevelopmentSeed__UserPassword = [System.Net.NetworkCredential]::new('', (Re
 dotnet run --project src/Alerts.Api --launch-profile http
 ```
 
-Keep the credentials available through your local secret manager or environment in the terminal used for the API commands. Do not regenerate them when reusing an existing database: seeding does not change existing passwords, roles or enable flags. Missing/invalid seed configuration fails startup; existing accounts with unexpected roles also fail bootstrap instead of being promoted. Disable seeding after initial bootstrap with `DevelopmentSeed__Enabled=false`. Migrations are explicit and never run automatically on application startup. The schema contains only Identity tables (including `AspNetUsers.IsEnabled`) and EF migration history.
+Keep the credentials available through your local secret manager or environment in the terminal used for the API commands. Do not regenerate them when reusing an existing database: seeding does not change existing passwords, roles or enable flags. Missing/invalid seed configuration fails startup; existing accounts with unexpected roles also fail bootstrap instead of being promoted. Disable seeding after initial bootstrap with `DevelopmentSeed__Enabled=false`. Migrations are explicit and never run automatically on application startup. Phase 01 supplies Identity tables (including `AspNetUsers.IsEnabled`) and EF migration history; applying all current migrations also adds the Phase 02 domain tables.
 
 If the default CLI home/cache is not writable, use the shell-local `.local` settings in the root README before running dotnet commands.
 
