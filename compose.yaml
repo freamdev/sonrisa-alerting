@@ -1,0 +1,63 @@
+name: alerts
+
+x-backend: &backend
+  image: alerts-api:local
+  build:
+    context: .
+    dockerfile: Dockerfile
+  environment: &backend-environment
+    ASPNETCORE_ENVIRONMENT: Development
+    ConnectionStrings__Alerts: 'Host=db;Port=5432;Database=alerts;Username=alerts;Password="${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}"'
+    Logging__LogLevel__Microsoft.EntityFrameworkCore: Critical
+
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: alerts
+      POSTGRES_USER: alerts
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U alerts -d alerts"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+
+  migrate:
+    <<: *backend
+    command: ["--migrate-development"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    <<: *backend
+    environment:
+      <<: *backend-environment
+      ASPNETCORE_HTTP_PORTS: 8080
+      DevelopmentSeed__Enabled: ${DevelopmentSeed__Enabled:-false}
+      DevelopmentSeed__AdminEmail: ${DevelopmentSeed__AdminEmail:-}
+      DevelopmentSeed__AdminPassword: ${DevelopmentSeed__AdminPassword:-}
+      DevelopmentSeed__UserEmail: ${DevelopmentSeed__UserEmail:-}
+      DevelopmentSeed__UserPassword: ${DevelopmentSeed__UserPassword:-}
+    ports:
+      - "127.0.0.1:${API_PORT:-5165}:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "--max-time", "3", "http://localhost:8080/health"]
+      interval: 5s
+      timeout: 4s
+      retries: 12
+      start_period: 10s
+    restart: "no"
+
+volumes:
+  postgres-data:

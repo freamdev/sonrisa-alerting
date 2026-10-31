@@ -1,6 +1,6 @@
 # Implementation status / human review log
 
-**Current phase:** 02 — APPROVED (human validated on 2026-10-31). Phases 00 and 01 remain APPROVED. Awaiting explicit instructions before Phase 03; no subsequent phase has been started.
+**Current phase:** 03 - AWAITING HUMAN VALIDATION (2026-10-31). Phases 00, 01 and 02 remain APPROVED. Phase 03 implementation/testing is complete; stop for explicit developer validation. No subsequent phase has been started.
 
 Append for each phase:
 
@@ -145,3 +145,46 @@ Only developer-provided approval may change the phase to `APPROVED`.
 - Replaced `Domain/PersistenceModels.cs` with `Topic.cs`, `Channel.cs`, `UserTopicSelection.cs`, `UserChannelSelection.cs`, `AlertEvent.cs`, `Delivery.cs`, and standalone `DeliveryStatus.cs`. Namespaces, members and persistence behavior are unchanged.
 - Verification: `dotnet build Alerts.sln --no-restore` passed with zero warnings/errors; `dotnet test Alerts.sln --no-build` passed all 17 tests; `dotnet format Alerts.sln --verify-no-changes --no-restore` passed; `dotnet ef migrations has-pending-model-changes --project src/Alerts.Api --no-build` reported no model changes; `git -c safe.directory=D:/Temp/Sonrisa diff --check` passed.
 - This correction was initially presented as `AWAITING HUMAN VALIDATION` and is included in the developer's subsequent Phase 02 approval above. No subsequent phase started.
+
+## Phase 03 - Docker Compose developer environment
+
+- Status: `AWAITING HUMAN VALIDATION` (2026-10-31).
+- Scope delivered:
+  - Multi-stage .NET 10 Release image, minimal build context excluding secrets/generated artifacts, non-root runtime and curl liveness probe.
+  - Official PostgreSQL 17, named persistent volume, no DB host port, loopback-only configurable API port. PostgreSQL health gates a one-shot migration service; successful migrations gate API startup. Bounded health retries and nonzero bootstrap failures avoid assuming ordinary depends_on implies readiness or restarting indefinitely.
+  - Explicit `--migrate-development` command applies the existing EF migration chain without serving HTTP/seeding; rejected outside Development. Normal API startup retains existing opt-in account seeds. This workflow is local-demo-only, not a production deployment/migration strategy.
+  - Anonymous `/health` liveness, JSON console logs and structured bootstrap events 3001..3004/outcomes. Failure logs omit raw exceptions/config values; Compose suppresses EF provider details below Critical. No secrets added to tracked configuration.
+  - Setup, account/bootstrap, migration rerun, authentication, reset, troubleshooting and limitations guide. No dispatch, sender, source polling, management API or frontend work.
+- Changed files:
+  - Container/config: `Dockerfile`, `.dockerignore`, `compose.yaml`, `.env.example`.
+  - Runtime: `src/Alerts.Api/Program.cs`, `src/Alerts.Api/Infrastructure/Identity/DevelopmentDatabaseMigrator.cs`.
+  - Tests: `tests/Alerts.UnitTests/RuntimeTests.cs` (anonymous liveness response/no-store; production migration guard).
+  - Documentation: `README.md`, `docs/phase03-compose.md`, this log.
+- Tests executed and outcomes:
+  - `dotnet build Alerts.sln --no-restore`: passed, zero warnings/errors, SDK 10.0.403 and existing cached dependencies; shell-local CLI home/NuGet cache under ignored `.local/`. No package changes.
+  - `dotnet test Alerts.sln --no-build`: passed all 19 tests, zero failures/skips, including all 17 previous tests. In-process HTTP/EF InMemory coverage, no E2E or external-provider suite.
+  - `dotnet format Alerts.sln --verify-no-changes --no-restore`: passed, exit 0.
+  - `git -c safe.directory=D:/Temp/Sonrisa diff --check`: passed after removing a README trailing blank line. Existing user-ignore permission and line-ending warnings are environmental; no global Git configuration changed.
+  - Docker initially denied daemon access inside sandbox; approved escalation worked. Docker Desktop 4.35.1 / Engine 27.3.1 / Compose v2.29.7, Linux containers.
+  - Isolated project `alerts-phase03-validation`, ignored generated `.local/phase03.env`, API port 55165. Exact build/start command: `docker compose --env-file .local/phase03.env -p alerts-phase03-validation up --build --detach --wait --wait-timeout 180`. Passed: registry pulls, image restore/publish, fresh PostgreSQL volume, DB healthy, migrate exit 0, API healthy. An initial disposable test-env generation mistake was corrected and its volume reset before substantive validation; product config was unaffected.
+  - Actual HTTP `/health`: 200 Healthy. Anonymous `me`: 401. User login (CSRF cookie/token): 204, `me`: 200, admin probe: 403. Admin login: 204, `me`: 200, admin probe: 200.
+  - SQL through `docker compose ... exec -T db psql -v ON_ERROR_STOP=1 -U alerts -d alerts`: 14 tables, two migration-history rows, two accounts, three topics, two channels. Piped `docs/phase02-validation.sql`: PASS for catalog seeds, independent selections, unique/FK constraints, attempt/status bounds and deletion/history policy; rolled back.
+  - `docker compose --env-file .local/phase03.env -p alerts-phase03-validation run --rm migrate`: passed on migrated DB. `down` without volumes followed by `up --detach --wait --wait-timeout 180`: passed; both original account passwords still logged in with correct role boundaries, no duplicate seeds.
+  - Runtime `id -u`: 1654 (non-root). Checked migrate/API logs for JSON events 3001, 3002, 3003 and all three generated validation passwords: events present, passwords absent.
+  - `docker compose ... run --rm --no-deps -e ASPNETCORE_ENVIRONMENT=Production migrate`: exit 1 with safe JSON failure event 3004. `docker compose ... run --rm --no-deps -e DevelopmentSeed__AdminPassword= api`: exit 1 with event 3004, before HTTP serving.
+- Final clean-volume smoke test: isolated `down --volumes` followed by `up --build --detach --wait --wait-timeout 180` passed again; health, two migration rows and both role/login scenarios passed. Removed validation containers, network, volume and generated credential file afterward. Built image/cache retained.
+- Manual verification / human acceptance commands:
+  1. Follow `docs/phase03-compose.md` from the repo root: `Copy-Item .env.example .env`; replace the DB password; opt into seeds with two distinct emails and valid unique passwords to verify auth.
+  2. `docker compose config --quiet`, `docker compose up --build`. In another terminal: `docker compose ps --all`, `curl.exe --fail --include http://localhost:5165/health`, `docker compose exec -T db psql -U alerts -d alerts -c '\dt'`. Expect healthy DB/API, migration exit 0, 200 Healthy and complete schema.
+  3. Run the guide's migration-history/account count commands and Phase 01 Repeatable API checks using the same credentials; expect the HTTP statuses above. `docker compose run --rm migrate` must succeed again.
+  4. `docker compose down`, then `docker compose up --detach --wait --wait-timeout 180`; verify original accounts/passwords persist. Recreated API requires new login/CSRF tokens.
+  5. For disposable data only: `docker compose down --volumes`, then `docker compose up --build --detach --wait --wait-timeout 180`; recheck health, migration history/schema and authentication. This deletes all local application data. Use `docker compose down` to stop while preserving data.
+- Known limitations / tradeoffs:
+  - `/health` is process liveness, not DB readiness. DB health checks and successful migrations gate initial startup only; later outages can leave liveness healthy while authenticated requests fail. No DB readiness HTTP endpoint or automatic outage recovery is claimed.
+  - Development/localhost HTTP only; no production HTTPS deployment, distributed locking strategy or production secret management. DB/account secrets live in ignored local environment configuration. Password quoting restriction (no double quotes/newlines) documented.
+  - Data-protection keys are container-local and unencrypted at rest as framework warnings indicate; API recreation invalidates sessions/CSRF tokens. Production key persistence/protection requires a separate deployment decision.
+  - Image tags are versioned but not immutable digests. Runtime installs curl for the health probe. Compose hides raw EF exception details for bootstrap secrecy; troubleshooting uses health, credential consistency and seed requirements.
+  - Existing untracked Phase 02 conversation records left untouched. No commit created.
+- Developer questions / decisions:
+  - No blocking questions or scope deviations. Previous Phase 02 approval verified before coding. Explicit one-shot development migrations chosen to preserve the prior explicit migration workflow. Future source/destination decisions remain deferred to their assigned phases.
+- Developer approval: pending. Stop for explicit Phase 03 validation/feedback; Phase 04 is not authorized or implemented.
