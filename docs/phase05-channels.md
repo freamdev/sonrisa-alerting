@@ -1,6 +1,6 @@
 # Phase 05 Email and Slack adapters
 
-Phase 05 is awaiting human validation. Phases 00–04 are approved. Runtime Email and Slack adapters replace the recording fakes; the fake adapter remains available to isolated tests. No polling worker, management API or frontend is added.
+Phase 05 was explicitly approved by the developer on 2026-10-31, with full-content/multiple-message Slack behavior deferred for post-MVP validation. Phases 00–04 remain approved. Runtime Email and Slack adapters replace the recording fakes; the fake adapter remains available to isolated tests. No polling worker, management API or frontend is added. Phase 06 has not started and requires a separate explicit request.
 
 ## Agreed delivery contract
 
@@ -10,6 +10,7 @@ Developer decisions on 2026-10-31:
 - Slack uses an incoming webhook targeting a Slack channel, mapped to each application user ID in server-owned secret configuration. No global webhook fallback, DM API, OAuth installation or user-facing configuration screen is implemented.
 - Two users mapped to the same Slack channel produce separate messages and separate persisted delivery records. **Before production, decide whether shared destinations should receive one message per event or one per eligible user, and clarify ownership, access and destination management.** The MVP deliberately retains one delivery per event/user/channel.
 - Local mocked transports suffice for acceptance. Automated tests never call Slack or a real SMTP provider.
+- **Post-MVP validation:** decide whether sending an alert's entire content across multiple Slack messages is acceptable behavior. Review readability, message volume and partial-send/retry handling before implementing it. The MVP continues to truncate content into a single Slack message; multi-message delivery is not implemented or approved by this follow-up.
 
 Destinations and channel preferences are independent. A mapping alone does not subscribe a user. Global flags and both independent selections are checked by the existing dispatcher before every attempt.
 
@@ -92,6 +93,6 @@ All adapter failures, including missing configuration and provider 4xx/429 respo
 
 To add a third channel, implement `IChannelSender` with its stable catalog code, resolve destinations inside its adapter, and register it through DI. Add catalog data using the migration conventions and tests. Matching stays unchanged: it uses enabled catalogs and independent user selections. The current behavior for an unknown code remains `sender_unavailable`, pending with no consumed attempt; disabled channels remain suppressed. Never register two senders with the same code.
 
-The single-process serialization, sequential sends, conservative attempt reservations and possible duplicate external side effect after a crash remain the Phase 04 limitations. No exactly-once, production readiness or real-provider delivery is claimed. Stop for explicit human validation before any later phase.
+The single-process serialization, sequential sends, conservative attempt reservations and possible duplicate external side effect after a crash remain the Phase 04 limitations. No exactly-once, production readiness or real-provider delivery is claimed. Phase 05 approval does not authorize starting a later phase; wait for a separate explicit request.
 
 Provider references: [MailKit API](https://mimekit.net/docs/html/T_MailKit_Net_Smtp_SmtpClient.htm), [Slack incoming webhooks](https://api.slack.com/messaging/webhooks), [Slack formatting](https://docs.slack.dev/messaging/formatting-message-text/), [Mailpit Docker setup](https://mailpit.axllent.org/docs/install/docker/).

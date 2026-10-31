@@ -1,6 +1,6 @@
 # Implementation status / human review log
 
-**Current phase:** 05 - AWAITING HUMAN VALIDATION (2026-10-31). Phases 00 through 04 remain APPROVED. Phase 06 is NOT STARTED. No subsequent phase is authorized or implemented; stop for explicit developer validation.
+**Current phase:** 05 - APPROVED (human approved on 2026-10-31). Phases 00 through 04 remain APPROVED. Next phase: 06 - NOT STARTED; awaiting explicit developer instructions. The post-MVP Slack full-content/multiple-message validation item remains deferred. No subsequent phase is authorized or implemented.
 
 Append for each phase:
 
@@ -233,7 +233,7 @@ Only developer-provided approval may change the phase to `APPROVED`.
 
 ## Phase 05 - Email and Slack channel adapters
 
-- Status: `AWAITING HUMAN VALIDATION` — implementation and local mocked acceptance checks completed on 2026-10-31; no completed-phase approval recorded.
+- Status: `APPROVED` — developer explicitly approved the implementation on 2026-10-31, with Slack full-content/multiple-message behavior deferred for post-MVP validation.
 - Scope delivered:
   - Runtime `IChannelSender` adapters for stable `email` and `slack` codes, replacing runtime recording fakes. Routing still uses normalized events and independent selections without referencing SMTP/Slack implementations. No schema/migration change.
   - MailKit SMTP, current Identity email lookup per attempt, control-character-safe subject and plain-text MIME body, environment-managed sender/host/port/TLS/authentication, 30-second socket timeout and cancellation. Optional profile-enabled Mailpit sink with loopback Web UI.
@@ -275,4 +275,10 @@ Only developer-provided approval may change the phase to `APPROVED`.
   - Proposed adapters, shared formatting, safe failure mapping, environment configuration and local mocked validation before coding; asked the three blocking transport/destination questions.
   - Developer (2026-10-31): "a webhook targetting a channel is fine, if multiple user sets the same channel we can let the system send multiple messages for now, write it up as a design decession that this needs to be cleared before production"; "Mailkit and Mailpit is perfect"; "local fake mocked systems are acceptedable for the MVP". Implemented the proposed server-owned per-user mapping and Identity email contract.
   - No blocking questions remain. No commit created and no subsequent phase implemented.
-- Developer approval: pending. Stop for explicit human validation; do not mark Phase 05 approved or start Phase 06.
+- Developer approval (2026-10-31): "rest of the implementation is approved, update status files". Phase 05 is human approved following the documentation follow-up below. Slack full-content/multiple-message validation remains deferred beyond MVP. Phase 06 requires a separate explicit implementation request. No commit created.
+
+### Phase 05 documentation follow-up (2026-10-31)
+
+- Developer requested post-MVP validation of whether sending the entire alert content across multiple Slack messages is acceptable behavior.
+- Recorded this deferred decision in `PROJECT_CONTEXT.md` and `docs/phase05-channels.md`, including readability, message volume and partial-send/retry handling. It is not a Phase 05 acceptance blocker; current single-message truncation remains implemented.
+- Documentation-only change; no runtime changes or test rerun. `git diff --check` passed. This follow-up was initially presented as `AWAITING HUMAN VALIDATION` and is included in the developer's subsequent Phase 05 approval above. No subsequent phase authorized or started.

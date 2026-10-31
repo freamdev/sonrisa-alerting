@@ -46,6 +46,10 @@ Build a small Docker-runnable web application in which authenticated users subsc
 
 These are **blocking choices**, not invitations for the agent to expand scope. Ask a concise question and pause; do not substitute a more complex feature.
 
+## Post-MVP decisions
+
+- Slack full-content delivery: validate whether splitting an alert's entire content across multiple Slack messages is acceptable behavior, including readability, message volume and partial-send/retry semantics. This is deferred beyond MVP and is not a Phase 05 acceptance blocker. The current MVP truncates content into one Slack message; this follow-up does not authorize implementing multi-message delivery.
+
 ## Recommended minimal persistent concepts
 
 - Identity user: id, identity fields, isEnabled, role(s), optional destination fields agreed later.

@@ -1,6 +1,6 @@
 # Alerts
 
-A small modular monolith for topic-based notifications through independently selected delivery channels. Phases 00 through 04 are human approved. Phase 05 adds MailKit Email and per-user Slack channel-webhook adapters and is awaiting human validation. See [Phase 05 configuration and mocked demonstration](docs/phase05-channels.md) and [Phase 04 routing](docs/phase04-routing.md). No subsequent phase has started.
+A small modular monolith for topic-based notifications through independently selected delivery channels. Phases 00 through 05 are human approved. Phase 05 adds MailKit Email and per-user Slack channel-webhook adapters, with full-content/multiple-message Slack behavior deferred for post-MVP validation. See [Phase 05 configuration and mocked demonstration](docs/phase05-channels.md) and [Phase 04 routing](docs/phase04-routing.md). Phase 06 has not started and requires a separate explicit request.
 
 ## Run with Docker Compose
 
