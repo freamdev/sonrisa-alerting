@@ -38,11 +38,11 @@ Build a small Docker-runnable web application in which authenticated users subsc
 ## Unresolved choices — ask at the phase that needs them
 
 1. SQL database provider: **RESOLVED in Phase 00** — PostgreSQL, explicitly selected by the developer on 2026-10-31. .NET 10 LTS, Angular 22 and the repository-root layout were also accepted. Upgrade the detected Node.js 18.14.2 to a supported version before initializing Angular in Phase 08; handle the upgrade if feasible or remind the developer then.
-2. Login delivery and local dev bootstrap (cookie authentication with same-origin deployment is a sensible default; confirm account creation/seed admin, and disabled-user sign-in behavior): **Phase 1**.
+2. Login delivery and local dev bootstrap: **RESOLVED in Phase 01** — developer approved same-origin cookie authentication and development-only seeded admin/user accounts with environment/configuration credentials on 2026-10-31. No public registration in the MVP; accounts will be added/invited by admins in later management work.
 3. External source JSON example/REST contract, event topic mapping and timestamp meaning: **Phase 4 or 6**, before implementing mapping, if not already specified. For a mock, propose a minimal contract and get agreement.
 4. Slack destinations: per-user Slack DM vs channel/webhook; who configures credentials and destinations. Email SMTP/dev mail sink choice: **Phase 5**. This affects whether Slack can truly reach an individual user's selection, so must be agreed explicitly.
 5. Delete-user semantics and handling of old delivery records: **Phase 2 or 7**, before implementing deletes.
-6. Whether admin disabled user may still sign in (or cannot): **Phase 1**. Regardless, disabled users must not receive notifications.
+6. Disabled-user access: **RESOLVED in Phase 01** — developer on 2026-10-31: "disabling a user should block new requests as well as login processes." Check persisted account status on every authenticated request, including existing sessions. Disabled users must also not receive notifications when delivery processing is implemented.
 
 These are **blocking choices**, not invitations for the agent to expand scope. Ask a concise question and pause; do not substitute a more complex feature.
 
