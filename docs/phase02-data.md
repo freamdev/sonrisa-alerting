@@ -1,5 +1,7 @@
 # Phase 02 persistence and validation
 
+Status: **APPROVED** — the developer confirmed manual testing and approval on 2026-10-31. Phase 03 awaits explicit instructions.
+
 Phase 02 adds domain persistence to the existing Identity context and migration chain. No selection HTTP endpoints, routing, senders, polling, UI, Compose or health endpoint are implemented.
 
 ## Schema and decisions

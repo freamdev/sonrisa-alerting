@@ -1,6 +1,6 @@
 # Alerts
 
-A small modular monolith for topic-based notifications through independently selected delivery channels. Phases 00 and 01 are approved. Phase 02 adds domain persistence and is awaiting human validation.
+A small modular monolith for topic-based notifications through independently selected delivery channels. Phases 00, 01 and 02 are human validated and approved. Phase 02 adds domain persistence. Phase 03 has not started and awaits explicit instructions.
 
 ## Decisions and layout
 

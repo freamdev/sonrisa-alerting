@@ -1,6 +1,6 @@
 # Implementation status / human review log
 
-**Current phase:** 02 — AWAITING HUMAN VALIDATION (2026-10-31). Phases 00 and 01 remain APPROVED. Phase 02 implementation was explicitly authorized; no subsequent phase has been started.
+**Current phase:** 02 — APPROVED (human validated on 2026-10-31). Phases 00 and 01 remain APPROVED. Awaiting explicit instructions before Phase 03; no subsequent phase has been started.
 
 Append for each phase:
 
@@ -99,7 +99,7 @@ Only developer-provided approval may change the phase to `APPROVED`.
 
 ## Phase 02 — Domain persistence and migrations
 
-- Status: `AWAITING HUMAN VALIDATION` — implementation complete on 2026-10-31; developer validation remains pending.
+- Status: `APPROVED` — manual testing completed and approved by the developer on 2026-10-31, including the separate-model-file review correction.
 - Scope delivered:
   - Extended the existing PostgreSQL Identity context and migration chain with Topic, Channel, independent UserTopicSelection/UserChannelSelection, AlertEvent and Delivery. Existing `ApplicationUser.IsEnabled` and authentication behavior retained.
   - Fixed catalog seeds: Finance, Politics, Weather; Email and Slack. Stable unique codes and global enable flags. Seeds create no personal selections and do not reset catalog enablement on migration reruns/startup.
@@ -137,11 +137,11 @@ Only developer-provided approval may change the phase to `APPROVED`.
 - Developer questions / decisions:
   - Developer (2026-10-31): "The plan and the user deletion policy is approved, proceed with the implementation". This approves implementation and hard-delete cascades for selections/deliveries while retaining shared events/topics/channels; it does not approve the completed milestone.
   - No unresolved blocking Phase 02 questions or scope deviations. Delivery destinations and external source contract remain future-phase decisions.
-- Developer approval: Pending. STOP for explicit human validation or Phase 02 feedback. No commit created and no authorization assumed for Phase 03.
+- Developer approval (2026-10-31): "The phase manual testing is done and approved, update the status files". Phase 02 is human validated and approved. No commit created; await explicit instructions before starting Phase 03.
 
 ### Phase 02 review correction — separate model files (2026-10-31)
 
 - Developer requested separate files for persistence models and enums for readability.
 - Replaced `Domain/PersistenceModels.cs` with `Topic.cs`, `Channel.cs`, `UserTopicSelection.cs`, `UserChannelSelection.cs`, `AlertEvent.cs`, `Delivery.cs`, and standalone `DeliveryStatus.cs`. Namespaces, members and persistence behavior are unchanged.
 - Verification: `dotnet build Alerts.sln --no-restore` passed with zero warnings/errors; `dotnet test Alerts.sln --no-build` passed all 17 tests; `dotnet format Alerts.sln --verify-no-changes --no-restore` passed; `dotnet ef migrations has-pending-model-changes --project src/Alerts.Api --no-build` reported no model changes; `git -c safe.directory=D:/Temp/Sonrisa diff --check` passed.
-- Phase 02 remains `AWAITING HUMAN VALIDATION`. No subsequent phase started.
+- This correction was initially presented as `AWAITING HUMAN VALIDATION` and is included in the developer's subsequent Phase 02 approval above. No subsequent phase started.
