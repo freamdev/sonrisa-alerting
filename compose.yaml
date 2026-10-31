@@ -11,6 +11,21 @@ x-backend: &backend
     Logging__LogLevel__Microsoft.EntityFrameworkCore: Critical
 
 services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-4200}:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1/health"]
+      interval: 5s
+      timeout: 4s
+      retries: 12
+    restart: "no"
+
   db:
     image: postgres:17
     environment:

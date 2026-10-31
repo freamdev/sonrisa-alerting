@@ -1,0 +1,67 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color: #182435;
+  background: #f7f8fa;
+}
+body {
+  margin: 0 auto;
+  max-width: 64rem;
+  padding: 1.25rem;
+}
+header {
+  border-bottom: 1px solid #bcc5cf;
+  padding-bottom: 1rem;
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+a {
+  color: #174b9c;
+}
+main {
+  max-width: 52rem;
+}
+label {
+  display: block;
+  margin: 0.8rem 0;
+}
+input:not([type='checkbox']) {
+  display: block;
+  padding: 0.5rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  width: 22rem;
+}
+button {
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  margin: 0.25rem;
+}
+button:disabled {
+  cursor: default;
+}
+fieldset,
+[role='alertdialog'] {
+  margin: 1.25rem 0;
+  padding: 1rem;
+  border: 1px solid #8694a5;
+  border-radius: 0.25rem;
+}
+legend {
+  font-weight: 700;
+}
+li {
+  margin: 0.75rem 0;
+  overflow-wrap: anywhere;
+}
+[role='alert'] {
+  color: #9c1725;
+  font-weight: 600;
+}
+:focus-visible {
+  outline: 3px solid #1757b8;
+  outline-offset: 3px;
+}
