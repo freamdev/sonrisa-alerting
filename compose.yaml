@@ -52,6 +52,13 @@ services:
       Channels__Email__Password: ${Channels__Email__Password:-}
       Channels__Slack__WebhooksJson: ${Channels__Slack__WebhooksJson:-}
       Channels__Slack__AllowLocalMock: ${Channels__Slack__AllowLocalMock:-false}
+      NewsSource__Enabled: ${NewsSource__Enabled:-false}
+      NewsSource__Endpoint: http://localhost:8080/dev/mock-news
+      NewsSource__IntervalSeconds: ${NewsSource__IntervalSeconds:-30}
+      NewsSource__TimeoutSeconds: ${NewsSource__TimeoutSeconds:-10}
+      NewsSource__FixturePath: /app/Fixtures/news.json
+    volumes:
+      - ./src/Alerts.Api/Fixtures:/app/Fixtures:ro
     ports:
       - "127.0.0.1:${API_PORT:-5165}:8080"
     depends_on:

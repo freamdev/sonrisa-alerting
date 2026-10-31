@@ -1,0 +1,7 @@
+[
+  { "id": "mock-finance-001", "topic": "finance", "title": "Finance update", "body": "Deterministic finance sample.", "timestamp": "2026-10-31T12:00:00Z" },
+  { "id": "mock-weather-001", "topic": "weather", "title": "Weather update", "body": "Deterministic weather sample.", "timestamp": "2026-10-31T13:00:00+01:00" },
+  { "id": "mock-finance-001", "topic": "finance", "title": "Duplicate ignored", "body": "Does not replace the original.", "timestamp": "2026-10-31T12:00:00Z" },
+  { "id": "", "topic": "finance", "title": "Invalid ID", "body": "Rejected.", "timestamp": "2026-10-31T12:00:00Z" },
+  { "id": "mock-unknown", "topic": "unknown", "title": "Unknown topic", "body": "Rejected.", "timestamp": "2026-10-31T12:00:00Z" }
+]

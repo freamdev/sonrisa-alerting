@@ -1,6 +1,6 @@
 # Implementation status / human review log
 
-**Current phase:** 05 - APPROVED (human approved on 2026-10-31). Phases 00 through 04 remain APPROVED. Next phase: 06 - NOT STARTED; awaiting explicit developer instructions. The post-MVP Slack full-content/multiple-message validation item remains deferred. No subsequent phase is authorized or implemented.
+**Current phase:** 06 - AWAITING HUMAN VALIDATION (2026-10-31). Phases 00 through 05 remain APPROVED. Phase 07 is NOT STARTED; no subsequent phase is authorized or implemented. The post-MVP Slack full-content/multiple-message validation item remains deferred.
 
 Append for each phase:
 
@@ -282,3 +282,46 @@ Only developer-provided approval may change the phase to `APPROVED`.
 - Developer requested post-MVP validation of whether sending the entire alert content across multiple Slack messages is acceptable behavior.
 - Recorded this deferred decision in `PROJECT_CONTEXT.md` and `docs/phase05-channels.md`, including readability, message volume and partial-send/retry handling. It is not a Phase 05 acceptance blocker; current single-message truncation remains implemented.
 - Documentation-only change; no runtime changes or test rerun. `git diff --check` passed. This follow-up was initially presented as `AWAITING HUMAN VALIDATION` and is included in the developer's subsequent Phase 05 approval above. No subsequent phase authorized or started.
+
+## Phase 06 - Mock REST source and background polling
+
+- Status: `AWAITING HUMAN VALIDATION` (2026-10-31). No Phase 07 work or commit created.
+- Scope delivered:
+  - Approved GET-array contract mapped to normalized events through typed `HttpClient` and `INewsSource`; exact persisted topic-code lookup, required/bounded fields, explicit timestamp timezone converted to UTC. Individually malformed/unknown-topic items are skipped; invalid JSON/envelopes fail the poll.
+  - Configurable opt-in single `BackgroundService`, fresh scopes, bounded HTTP timeout and 1 MiB response buffer, sequential cycles, safe stage-only failure logs and cancellation throughout. Default 30-second delay after each cycle; source failures do not consume delivery attempts.
+  - Strictly Development-only anonymous `GET /dev/mock-news`, replaceable/reloaded deterministic fixture with Finance, Weather, duplicate ID, malformed and unknown-topic examples. Missing fixture returns 503. Compose mounts the fixture directory read-only and polls its internal listener when enabled.
+  - Existing Phase 04 uniqueness/routing and Phase 05 adapters reused unchanged. No schema/package changes, management APIs, mutation endpoint, frontend, distributed processing or later phases.
+- Changed files:
+  - Application: `src/Alerts.Api/Application/INewsSource.cs`, boundary `README.md`.
+  - Infrastructure: `src/Alerts.Api/Infrastructure/News/HttpNewsSource.cs`, `NewsSourceOptions.cs`, `NewsPollingWorker.cs`, `NewsSetup.cs`, Infrastructure `README.md`.
+  - Host/configuration: `src/Alerts.Api/Program.cs`, `Alerts.Api.csproj`, `Fixtures/news.json`, root `compose.yaml`, `.env.example`.
+  - Tests: new `NewsSourceTests.cs`, `DevelopmentNewsTests.cs`; extended `ChannelSenderTests.cs` with worker-through-real-adapters controlled validation and optional fixture configuration.
+  - Documentation: root `README.md`, `docs/phase06-source-worker.md`, `docs/phase06-select-user.sql`, `codex_alerts_plan/PROJECT_CONTEXT.md`, this status log.
+- Tests executed and outcomes:
+  - Shell-local CLI home/NuGet cache under `.local/`; existing cached dependencies, no restore needed.
+  - `dotnet format Alerts.sln --no-restore`: passed/applied formatting.
+  - Final `dotnet format Alerts.sln --verify-no-changes --no-restore`: passed, exit 0. Final detailed controlled polling test: passed (1 test), output confirmed Email=1 / Slack=1, HTTP 503 recovery, duplicate suppression and clean stop. `git -c safe.directory=D:/Temp/Sonrisa diff --check`: passed, only existing CRLF advisory warnings.
+  - `dotnet build Alerts.sln --no-restore`: passed, zero warnings/errors.
+  - `dotnet test Alerts.sln --no-build`: final implementation run passed all 103 tests, zero failures/skips (76 prior + 27 added cases). Initial new malformed-JSON test used exact exception matching; changed to accept the derived JsonReaderException and reran successfully.
+  - Tests cover accepted UTC/offset normalization, malformed neighbors and fields/lengths, unknown/case-mismatched topics, invalid envelopes, HTTP failure/timeout/cancellation, dedupe/delivery counts, worker failure continuation/no overlap and shutdown, disabled worker/interval cancellation, actual host Development/Production/Staging route registration, fixture reload/503 and option validation.
+  - Controlled `PollingThroughHttpAndBothAdaptersSurvivesFailureAndIgnoresRepolls` uses the actual worker/client/dispatcher/Email/Slack adapters with EF InMemory and fake transports: first HTTP 503 recovered, two fixture polls, two events, two one-attempt successes, one SMTP message and one Slack POST, then clean cancellation.
+  - `docker compose --env-file .env.example --profile channels config --quiet`: passed. Non-elevated daemon check was denied by Windows; approved elevated `docker info` succeeded (27.3.1). No automatic approval rejection.
+  - Live isolated stack command: `docker compose --project-name alerts-phase06 --env-file .local/phase06/validation.env -f compose.yaml -f .local/phase06/compose.override.yaml --profile channels up --build --detach --wait --wait-timeout 180`: built and started successfully. Used generated ignored credentials, a separate fixture mount, fresh project-specific PostgreSQL volume, API port 15165 and Mailpit UI port 18025. A PowerShell 5 credential-generation setup error was corrected, and only this disposable validation stack/volume was recreated before acceptance; no existing application data was touched.
+  - Live selection SQL (same statements as `docs/phase06-select-user.sql`) inserted two independent topics and Email for the seeded user. Publishing the fixture automatically stored `mock-finance-001` and `mock-weather-001`, created two `Succeeded` deliveries with one attempt each; Mailpit `/api/v1/messages` reported total 2.
+  - Live failure/recovery: renamed the separate validation fixture temporarily; endpoint returned 503, logs showed source failures. Restored it; logs resumed `3 valid items, 0 new events`. PostgreSQL counts remained 2 events / 2 deliveries / 2 summed attempts after repeated polls.
+  - `docker compose ... stop api` succeeded with `News polling stopped` log. Remaining temporary services were stopped; their isolated data and ignored validation files remain for inspection. No tracked fixture modification was left behind.
+- Exact human-validation commands:
+  1. Follow `docs/phase06-source-worker.md` for `.env`, opt-in seeding and destinations. Run `dotnet build Alerts.sln --no-restore`, `dotnet test Alerts.sln --no-build`, and `dotnet format Alerts.sln --verify-no-changes --no-restore` (restore first on fresh checkout).
+  2. Run `dotnet test tests/Alerts.UnitTests --no-build --filter FullyQualifiedName~PollingThroughHttpAndBothAdaptersSurvivesFailureAndIgnoresRepolls --logger 'console;verbosity=detailed'` for the controlled worker and both adapters.
+  3. Run `docker compose --profile channels up --build --detach --wait --wait-timeout 180` with polling disabled initially; apply `Get-Content -Raw docs/phase06-select-user.sql | docker compose exec -T db psql -U alerts -d alerts --set ON_ERROR_STOP=1 -f -` to the intended development test database. Then enable polling in `.env` and rerun Compose up.
+  4. Inspect two fresh sample events/deliveries and Mailpit; repeat the fixture and confirm no extra rows/messages. Follow the guide's temporary fixture rename/restore and `docker compose stop api` commands to validate HTTP failure recovery and shutdown.
+  5. Approve Phase 06 explicitly or request Phase 06 corrections. Approval alone does not authorize Phase 07.
+- Known limitations / tradeoffs:
+  - Polling is explicitly opt-in to allow selection/destination setup before first ingestion. First self-poll may race listener startup and recover next interval. All cycles/sends are sequential and single-process; slow adapters delay polling.
+  - Existing startup-only pending recovery, conservative attempt reservations, no retroactive routing and potential crash-related duplicate external side effects remain unchanged. Repolling a known event does not rescan pending deliveries.
+  - Live Compose exercised PostgreSQL/MailKit/Mailpit; Slack remains fake-HTTP validated, not a live external provider. Unit tests use EF InMemory; no E2E/external-provider suite introduced. Windows Docker operations required elevation; preexisting Git ignore/CRLF warnings remain environmental.
+- Developer questions / decisions:
+  - Requested `phases/04-source-worker.md` does not exist; used the actual Phase 06 source of truth `codex_alerts_plan/phases/06-source-worker.md`, explained before coding. Verified Phase 05 human approval.
+  - Developer (2026-10-31): "Rest contract: approved" and "Mock hosting: a seperate API route in the same project is perfect, make sure its dev only." Implemented that contract and strict environment restriction. Minor implementation choices (opt-in flag, bounded settings, read-only fixture reload/503) are documented above.
+  - No blocking questions or scope deviations remain. Await explicit human validation; no later phase started.
+- Developer approval: **Pending.** Contract/hosting approval authorized coding, not completed-phase acceptance.

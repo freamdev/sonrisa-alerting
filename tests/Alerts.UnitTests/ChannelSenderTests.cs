@@ -5,6 +5,7 @@ using Alerts.Api.Domain;
 using Alerts.Api.Infrastructure;
 using Alerts.Api.Infrastructure.Channels;
 using Alerts.Api.Infrastructure.Identity;
+using Alerts.Api.Infrastructure.News;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,59 @@ namespace Alerts.UnitTests;
 
 public sealed class ChannelSenderTests(ITestOutputHelper output)
 {
+    [Fact]
+    public async Task PollingThroughHttpAndBothAdaptersSurvivesFailureAndIgnoresRepolls()
+    {
+        using var handler = new ControlledNewsHandler();
+        await using var f = await Fixture.CreateAsync(services => services.AddScoped<INewsSource>(provider =>
+            new HttpNewsSource(new HttpClient(handler, disposeHandler: false),
+                provider.GetRequiredService<AlertsIdentityDbContext>(), Options.Create(new NewsSourceOptions()),
+                provider.GetRequiredService<ILogger<HttpNewsSource>>())));
+        using var worker = new NewsPollingWorker(f.Provider.GetRequiredService<IServiceScopeFactory>(),
+            Options.Create(new NewsSourceOptions { Enabled = true, IntervalSeconds = 1 }), TimeProvider.System,
+            f.Provider.GetRequiredService<ILogger<NewsPollingWorker>>());
+        await worker.StartAsync(default);
+        await handler.CompletedPolls.Task.WaitAsync(TimeSpan.FromSeconds(10));
+        await worker.StopAsync(default).WaitAsync(TimeSpan.FromSeconds(5));
+        Assert.True(worker.ExecuteTask!.IsCompletedSuccessfully);
+        await using var reopened = new AlertsIdentityDbContext(f.DbOptions);
+        Assert.Equal(2, await reopened.AlertEvents.CountAsync());
+        var rows = await reopened.Deliveries.ToListAsync();
+        Assert.Equal(2, rows.Count);
+        Assert.All(rows, row =>
+        {
+            Assert.Equal(DeliveryStatus.Succeeded, row.Status);
+            Assert.Equal(1, row.AttemptCount);
+            output.WriteLine($"delivery={row.Id}, channel={row.ChannelId}, status={row.Status}, attempts={row.AttemptCount}");
+        });
+        Assert.Single(f.Smtp.Messages);
+        Assert.Single(f.Http.Requests);
+        Assert.Contains(f.Logs.Entries, x => x.Contains("failed during source"));
+        Assert.Contains(f.Logs.Entries, x => x.Contains("0 new events"));
+        output.WriteLine("HTTP 503 recovered; two successful fixture polls; duplicates ignored; Email=1, Slack=1; worker stopped cleanly.");
+    }
+
+    private sealed class ControlledNewsHandler : HttpMessageHandler
+    {
+        private int calls;
+        public TaskCompletionSource CompletedPolls { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken ct)
+        {
+            var call = Interlocked.Increment(ref calls);
+            if (call == 1) return new(HttpStatusCode.ServiceUnavailable);
+            if (call == 4)
+            {
+                CompletedPolls.SetResult();
+                await Task.Delay(Timeout.Infinite, ct);
+            }
+            return new(HttpStatusCode.OK)
+            {
+                Content = new StringContent(await File.ReadAllTextAsync(
+                Path.Combine(AppContext.BaseDirectory, "Fixtures", "news.json"), ct))
+            };
+        }
+    }
+
     private static DeliveryMessage Message(string user = "alice", string title = "Sample <&>\r\nBcc: attacker@example.test") =>
         new(1, user, "sample-05", 1, title, "<script>alert(1)</script> & <!channel> *news*", DateTimeOffset.Parse("2026-10-31T12:00:00Z"));
 
@@ -342,7 +396,7 @@ public sealed class ChannelSenderTests(ITestOutputHelper output)
         public AlertsIdentityDbContext Db => Scope.ServiceProvider.GetRequiredService<AlertsIdentityDbContext>();
         public IAlertDispatcher Dispatcher => Scope.ServiceProvider.GetRequiredService<IAlertDispatcher>();
         public IChannelSender Sender(string code) => Scope.ServiceProvider.GetServices<IChannelSender>().Single(x => x.ChannelCode == code);
-        private Fixture()
+        private Fixture(Action<IServiceCollection>? configure = null)
         {
             var services = new ServiceCollection();
             services.AddLogging(builder => builder.SetMinimumLevel(LogLevel.Trace).AddProvider(Logs));
@@ -358,12 +412,13 @@ public sealed class ChannelSenderTests(ITestOutputHelper output)
             services.RemoveAll<IEmailTransport>();
             services.AddSingleton<IEmailTransport>(Smtp);
             services.AddHttpClient<SlackChannelSender>().ConfigurePrimaryHttpMessageHandler(() => Http);
+            configure?.Invoke(services);
             Provider = services.BuildServiceProvider(new ServiceProviderOptions { ValidateScopes = true, ValidateOnBuild = true });
             Scope = Provider.CreateAsyncScope();
         }
-        public static async Task<Fixture> CreateAsync()
+        public static async Task<Fixture> CreateAsync(Action<IServiceCollection>? configure = null)
         {
-            var f = new Fixture();
+            var f = new Fixture(configure);
             await f.Db.Database.EnsureCreatedAsync();
             f.Db.Users.Add(new() { Id = "alice", Email = "alice@example.test" });
             f.Db.UserTopicSelections.Add(new() { UserId = "alice", TopicId = 1 });

@@ -1,5 +1,6 @@
 using Alerts.Api.Infrastructure;
 using Alerts.Api.Infrastructure.Identity;
+using Alerts.Api.Infrastructure.News;
 
 namespace Alerts.Api;
 
@@ -37,6 +38,7 @@ public static class Program
         builder.Logging.AddJsonConsole();
         builder.Services.AddAlertsIdentity(builder.Configuration, builder.Environment.IsDevelopment());
         builder.Services.AddAlertRouting(builder.Configuration);
+        builder.Services.AddNewsPolling(builder.Configuration);
         builder.Services.AddHealthChecks();
         configure?.Invoke(builder);
         var app = builder.Build();
@@ -48,6 +50,7 @@ public static class Program
         app.UseAuthentication();
         app.UseAuthorization();
         app.MapAuthEndpoints();
+        app.MapDevelopmentNews();
         app.MapHealthChecks("/health").AllowAnonymous();
         return app;
     }
