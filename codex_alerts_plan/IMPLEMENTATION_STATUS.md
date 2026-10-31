@@ -1,6 +1,6 @@
 # Implementation status / human review log
 
-**Current phase:** 03 - APPROVED (human validated on 2026-10-31). Phases 00, 01 and 02 remain APPROVED. Next phase: 04 - NOT STARTED; awaiting explicit developer instructions. No subsequent phase is authorized or implemented.
+**Current phase:** 04 - AWAITING HUMAN VALIDATION (2026-10-31). Phases 00, 01, 02 and 03 remain APPROVED. Phase 05 and all subsequent phases are NOT STARTED and are not authorized. Stop for explicit Phase 04 validation; approval alone does not authorize the next phase.
 
 Append for each phase:
 
@@ -188,3 +188,45 @@ Only developer-provided approval may change the phase to `APPROVED`.
 - Developer questions / decisions:
   - No blocking questions or scope deviations. Previous Phase 02 approval verified before coding. Explicit one-shot development migrations chosen to preserve the prior explicit migration workflow. Future source/destination decisions remain deferred to their assigned phases.
 - Developer approval (2026-10-31): "manual human testing is done, approve the changes and edit the status files for the next phase, do not start phase 4". Phase 03 is human validated and approved. Phase 04 remains NOT STARTED and requires a separate explicit implementation request. No commit created.
+
+## Phase 04 - Alert routing, persistence, retry and fake senders
+
+- Status: `AWAITING HUMAN VALIDATION` (2026-10-31).
+- Scope delivered:
+  - Validated internal `AlertEvent` dispatch boundary, input copying and internal receipt timestamps. External REST DTO conversion remains Phase 06.
+  - PostgreSQL transaction for the event and complete initial delivery snapshot; known external IDs return false without new deliveries. Only the specific external-ID unique constraint is treated as a duplicate race.
+  - Independent topic/channel joins for enabled users, topics and channels. Every actual attempt rechecks persisted enablement and both selections; no preference combinations added.
+  - Channel abstraction and recording fake Email/Slack adapters. No external I/O or destination decisions introduced.
+  - Persisted attempts/outcomes, safe error codes and structured outcome logs. Maximum three reserved attempts, with exponential delays of 1 second then 2 seconds. Retry due time derives from persisted timestamps and honors cancellation.
+  - One startup recovery pass and explicit internal pending scan; no periodic source/retry polling worker. Pending scans read pages of 100. Singleton gate serializes the supported single-process dispatcher.
+- Changed files:
+  - Contracts: `src/Alerts.Api/Application/IAlertDispatcher.cs`, `IChannelSender.cs` (including immutable `DeliveryMessage`).
+  - Infrastructure: `src/Alerts.Api/Infrastructure/AlertDispatcher.cs`, `DispatchGate.cs`, `FakeChannelSender.cs`, `PendingDeliveryRecovery.cs`, `RoutingSetup.cs`.
+  - Composition: `src/Alerts.Api/Program.cs`.
+  - Tests: `tests/Alerts.UnitTests/RoutingTests.cs` (22 cases, including parameterized variants).
+  - Documentation: `docs/phase04-routing.md`, root `README.md`, Application/Infrastructure boundary READMEs and this log.
+- Tests executed and outcomes:
+  - Existing cached dependencies; no package additions, restore, schema changes or migrations. Shell-local `DOTNET_CLI_HOME`/`NUGET_PACKAGES` under ignored `.local/`.
+  - `dotnet build Alerts.sln --no-restore`: passed, zero warnings/errors.
+  - `dotnet test Alerts.sln --no-build`: final run passed all 41 tests, zero failures/skips (19 prior + 22 routing/recovery cases). Earlier run passed 39 before two additional recovery/adapter cases were added.
+  - `dotnet format Alerts.sln --no-restore`: applied formatting. Final `dotnet format Alerts.sln --verify-no-changes --no-restore`: passed, exit 0.
+  - `dotnet test tests/Alerts.UnitTests --no-build --filter FullyQualifiedName~ControlledDispatchShowsTwoPersistentDeliveriesAndFakeCalls --logger 'console;verbosity=detailed'`: passed. Output: delivery 1 / Alice / channel 1 / Succeeded / 1 attempt; delivery 2 / Alice / channel 2 / Succeeded / 1 attempt; fake Email calls 1, fake Slack calls 1. Rows were read through a newly opened EF context.
+  - Unit coverage includes unrelated/empty selections, global topic/channel/user disablement, channel removal across two topics, user isolation, duplicate IDs across contexts/concurrent in-process calls, exact 1s/2s delays, twice-fail-then-success, terminal failure at three attempts, repeated scans staying capped, persisted flag/preference changes before retries, cancellation and restart, final reserved attempt recovery, missing adapter, actual hosted recovery wiring and synthetic PostgreSQL duplicate exception classification.
+  - `git -c safe.directory=D:/Temp/Sonrisa diff --check`: passed. Existing user Git ignore permission and CRLF warnings remain environmental; no global Git configuration changed.
+- Manual verification / human acceptance commands:
+  1. Follow `docs/phase04-routing.md`. Run `dotnet build Alerts.sln --no-restore`, `dotnet test Alerts.sln --no-build`, and `dotnet format Alerts.sln --verify-no-changes --no-restore`.
+  2. Run `dotnet test tests/Alerts.UnitTests --no-build --filter FullyQualifiedName~RoutingTests --logger 'console;verbosity=detailed'`. Inspect the controlled invocation's two persisted rows and fake-call counts, and the exact retry-count/delay assertions.
+  3. Review the guide's internal scoped invocation, read-only PostgreSQL inspection commands and startup recovery behavior. The automated controlled sample uses an isolated EF InMemory database, not Compose data. There is no public ingestion endpoint in this phase.
+  4. Confirm independent preferences, pending-on-disable/reselection behavior, 1s/2s exponential delays and three-attempt cap. Give explicit approval or Phase 04 corrections; no later phase may start without a separate instruction.
+- Known limitations / tradeoffs:
+  - Tests use EF InMemory; PostgreSQL transaction rollback and real concurrent uniqueness races were not exercised against a live DB in this phase. The duplicate exception branch is covered synthetically; relational constraints are unchanged from previously validated Phase 02. No E2E/external-provider suite or Docker rerun introduced.
+  - Single API process only; the in-process gate does not coordinate independently running dispatchers. Sends/retries are sequential, so slow senders delay later deliveries.
+  - Reserving before I/O conservatively consumes interrupted attempts. A crash after external acceptance but before outcome persistence can repeat an external side effect on recovery. No exactly-once or distributed-processing guarantee is claimed.
+  - Currently disabled/deselected deliveries remain pending without consuming attempts; re-enabling/reselecting can deliver older events at a later scan. Initially ineligible events have no deliveries and are not routed retroactively.
+  - Recovery is one startup scan plus explicit internal calls. A scan-level persistence failure is logged safely and needs a later scan/restart; there is no autonomous periodic recovery yet.
+  - Fake calls are process-local; success means fake acceptance only. Real adapters, destinations and provider-specific permanent/transient error distinctions remain Phase 05. Fake-only sender exceptions are retried with safe generic error codes; missing adapters remain pending.
+- Developer questions / decisions:
+  - Prior Phase 03 human approval verified. Before coding, proposed persisted retries with startup/explicit scan, pre-send reservations and pending-on-disable behavior.
+  - Developer (2026-10-31): "Instead of 1 second restart use some exponential delays between recalls, otherwise the plan is approved. Proceed with the implementation". Implemented bounded 1-second then 2-second exponential delays. This authorizes implementation, not completed-phase human acceptance.
+  - No blocking questions remain and no subsequent phase was implemented. No commit created.
+- Developer approval: pending explicit human validation.

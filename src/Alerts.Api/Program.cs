@@ -1,3 +1,4 @@
+using Alerts.Api.Infrastructure;
 using Alerts.Api.Infrastructure.Identity;
 
 namespace Alerts.Api;
@@ -35,6 +36,7 @@ public static class Program
         var builder = WebApplication.CreateBuilder(args);
         builder.Logging.AddJsonConsole();
         builder.Services.AddAlertsIdentity(builder.Configuration, builder.Environment.IsDevelopment());
+        builder.Services.AddAlertRouting();
         builder.Services.AddHealthChecks();
         configure?.Invoke(builder);
         var app = builder.Build();

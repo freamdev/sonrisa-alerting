@@ -1,6 +1,6 @@
 # Alerts
 
-A small modular monolith for topic-based notifications through independently selected delivery channels. Phases 00, 01, 02 and 03 are human validated and approved. Phase 02 adds domain persistence; Phase 03 adds the Docker Compose environment. Phase 04 has not started and awaits explicit developer instructions.
+A small modular monolith for topic-based notifications through independently selected delivery channels. Phases 00, 01, 02 and 03 are human validated and approved. Phase 04 adds persisted internal routing, bounded exponential retries and fake senders, and is awaiting human validation. See [Phase 04 invocation and validation](docs/phase04-routing.md).
 
 ## Run with Docker Compose
 
@@ -56,6 +56,6 @@ $env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
 
 Angular 22 is recorded for Phase 08 only. The detected Node.js 18.14.2 cannot support it. Before initializing Angular in Phase 08, upgrade Node to a version supported by Angular 22 (currently Node ^22.22.3, ^24.15.0 or ^26.0.0), recheck the [official compatibility table](https://angular.dev/reference/versions), and handle the update locally if authorized and feasible; otherwise remind the developer. No Angular CLI, npm dependencies or frontend pages are installed now.
 
-Authentication uses same-origin cookies and CSRF protection, with no public registration. Admins retain ordinary user access. Disabled accounts cannot log in or use existing sessions. Domain persistence stores independent selections and minimum event/delivery state. Deleting an account cascades its selections and deliveries while retaining shared events/catalogs. Admin-driven account creation/invitations, management APIs, routing, senders, polling and frontend features remain in their assigned phases; destination settings and source payload remain decisions for those phases.
+Authentication uses same-origin cookies and CSRF protection, with no public registration. Admins retain ordinary user access. Disabled accounts cannot log in or use existing sessions. Domain persistence stores independent selections and event/delivery state. Deleting an account cascades its selections and deliveries while retaining shared events/catalogs. Internal routing uses recording fake Email/Slack senders with at most three persisted attempts and 1-second/2-second retry delays. Admin-driven account creation/invitations, management APIs, real senders, source polling and frontend features remain in their assigned phases; destination settings and source payload remain decisions for those phases.
 
 Read [the operating instructions](codex_alerts_plan/AGENTS.md), [project context](codex_alerts_plan/PROJECT_CONTEXT.md), [phase plan](codex_alerts_plan/PHASES.md), and [implementation status](codex_alerts_plan/IMPLEMENTATION_STATUS.md) before proceeding. Each phase requires explicit human validation; approval alone does not authorize the next phase.
