@@ -1,6 +1,6 @@
 # Implementation status / human review log
 
-**Current phase:** 06 - AWAITING HUMAN VALIDATION (2026-10-31). Phases 00 through 05 remain APPROVED. Phase 07 is NOT STARTED; no subsequent phase is authorized or implemented. The post-MVP Slack full-content/multiple-message validation item remains deferred.
+**Current phase:** 06 - APPROVED (human approved on 2026-10-31). Phases 00 through 05 remain APPROVED. Phase 07 is NOT STARTED; no subsequent phase is authorized or implemented. The post-MVP Slack full-content/multiple-message validation item remains deferred.
 
 Append for each phase:
 
@@ -285,7 +285,7 @@ Only developer-provided approval may change the phase to `APPROVED`.
 
 ## Phase 06 - Mock REST source and background polling
 
-- Status: `AWAITING HUMAN VALIDATION` (2026-10-31). No Phase 07 work or commit created.
+- Status: `APPROVED` — developer explicitly approved manual validation on 2026-10-31. No Phase 07 work or commit created.
 - Scope delivered:
   - Approved GET-array contract mapped to normalized events through typed `HttpClient` and `INewsSource`; exact persisted topic-code lookup, required/bounded fields, explicit timestamp timezone converted to UTC. Individually malformed/unknown-topic items are skipped; invalid JSON/envelopes fail the poll.
   - Configurable opt-in single `BackgroundService`, fresh scopes, bounded HTTP timeout and 1 MiB response buffer, sequential cycles, safe stage-only failure logs and cancellation throughout. Default 30-second delay after each cycle; source failures do not consume delivery attempts.
@@ -323,5 +323,6 @@ Only developer-provided approval may change the phase to `APPROVED`.
 - Developer questions / decisions:
   - Requested `phases/04-source-worker.md` does not exist; used the actual Phase 06 source of truth `codex_alerts_plan/phases/06-source-worker.md`, explained before coding. Verified Phase 05 human approval.
   - Developer (2026-10-31): "Rest contract: approved" and "Mock hosting: a seperate API route in the same project is perfect, make sure its dev only." Implemented that contract and strict environment restriction. Minor implementation choices (opt-in flag, bounded settings, read-only fixture reload/503) are documented above.
-  - No blocking questions or scope deviations remain. Await explicit human validation; no later phase started.
-- Developer approval: **Pending.** Contract/hosting approval authorized coding, not completed-phase acceptance.
+  - No blocking questions or scope deviations remain. Human validation approved; no later phase started.
+- Developer approval (2026-10-31): "phase 06 manual test is approved". Phase 06 is human approved. Phase 07 requires a separate explicit implementation request.
+- Approval bookkeeping: documentation only; no runtime changes or test rerun. Git whitespace check passed.

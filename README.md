@@ -1,6 +1,6 @@
 # Alerts
 
-A small modular monolith for topic-based notifications through independently selected delivery channels. Phases 00 through 05 are human approved. Phase 06 adds configurable HTTP source polling and a Development-only mock route; it is AWAITING HUMAN VALIDATION. See [Phase 06 validation](docs/phase06-source-worker.md), [Phase 05 adapters](docs/phase05-channels.md) and [Phase 04 routing](docs/phase04-routing.md). Full-content/multiple-message Slack behavior remains deferred beyond MVP. Phase 07 has not started.
+A small modular monolith for topic-based notifications through independently selected delivery channels. Phases 00 through 06 are human approved. Phase 06 adds configurable HTTP source polling and a Development-only mock route; manual validation was approved on 2026-10-31. See [Phase 06 validation](docs/phase06-source-worker.md), [Phase 05 adapters](docs/phase05-channels.md) and [Phase 04 routing](docs/phase04-routing.md). Full-content/multiple-message Slack behavior remains deferred beyond MVP. Phase 07 has not started.
 
 ## Run with Docker Compose
 

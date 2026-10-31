@@ -1,6 +1,6 @@
 # Phase 06: mock source and polling validation
 
-Status: AWAITING HUMAN VALIDATION. Only Phase 06 is implemented.
+Status: APPROVED. Developer approved Phase 06 manual validation on 2026-10-31: "phase 06 manual test is approved". No subsequent phase is implemented.
 
 ## Contract and operation
 
@@ -77,4 +77,4 @@ Keep/restore the tracked fixture after experiments. No volume deletion is requir
 
 On 2026-10-31 all 103 tests passed. An isolated `alerts-phase06` Compose stack built and started with fresh PostgreSQL, seeded accounts, Mailpit and a separate fixture mount. Automatic polling stored two events, created two successful one-attempt Email deliveries, and Mailpit reported two messages. A missing fixture returned 503; restoration resumed polling without increasing event/delivery counts. Graceful stop was checked through the worker log. Slack acceptance used fake HTTP, not a live Slack destination. See the implementation status for exact executed commands and outcomes.
 
-Single-process, sequential dispatch and the previously documented crash/send limitations remain. A persisted event whose dispatch is interrupted relies on startup/internal pending recovery; repeat source IDs do not initiate pending scans. Source fixtures are intentionally small; large feeds and provider guarantees are outside scope. Await explicit Phase 06 approval; do not advance to Phase 07.
+Single-process, sequential dispatch and the previously documented crash/send limitations remain. A persisted event whose dispatch is interrupted relies on startup/internal pending recovery; repeat source IDs do not initiate pending scans. Source fixtures are intentionally small; large feeds and provider guarantees are outside scope. Phase 06 is approved; Phase 07 requires a separate explicit implementation request.
