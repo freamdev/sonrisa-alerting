@@ -1,6 +1,8 @@
 # Phase 07 - Personal and admin HTTP APIs
 
-Phase 07 is awaiting human validation. No Angular implementation is included. Start the local Development stack using the root README and Phase 03 guide. Development-only OpenAPI JSON is at `GET /openapi/v1.json`; import it into an API client. Outside Development the route is absent. It uses the [supported ASP.NET Core OpenAPI generator](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/aspnetcore-openapi?view=aspnetcore-10.0); no Swagger UI dependency is needed.
+Phase 07, including the Minimal API boundary split, was human approved on 2026-10-31. No Angular implementation is included. Start the local Development stack using the root README and Phase 03 guide. Development-only OpenAPI JSON is at `GET /openapi/v1.json`; import it into an API client. Outside Development the route is absent. It uses the [supported ASP.NET Core OpenAPI generator](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/aspnetcore-openapi?view=aspnetcore-10.0); no Swagger UI dependency is needed.
+
+The Minimal API HTTP boundary is split into `PersonalSettingsEndpoints` for `/api/me` and `AdministrationEndpoints` for `/api/admin`, registered independently in `Program.cs`. Shared catalog reads, HTTP metadata/error helpers and cache filtering live in `ManagementEndpointSupport.cs`; request/response records live in `ManagementContracts.cs`. This organization preserves the routes, wire contracts and security policies described below.
 
 ## Contract
 
@@ -134,4 +136,4 @@ Tests use TestServer/real Identity cookies and isolated EF InMemory stores, with
 
 On 2026-10-31 an isolated `alerts-phase07` Compose stack with fresh PostgreSQL, local Mailpit, API port 15175 and Mailpit port 18035 passed the API checks above. Polling a new event with a disabled topic stored the event with zero deliveries/messages; a new ID after enablement created one delivery/Mailpit message. HTTP deletion returned 204, then the existing deleted-user session returned 401. Actual SQL counts changed from users=2/selections=1+1/deliveries=1 to users=1/selections=0+0/deliveries=0, retaining events=2/topics=3/channels=2. This is manual local validation, not an added provider integration suite. See the implementation status log for final automated results and limitations.
 
-Give explicit Phase 07 approval or corrections. Approval does not authorize Phase 08.
+Phase 07 approval is recorded in `codex_alerts_plan/IMPLEMENTATION_STATUS.md`. Phase 08 remains NOT STARTED and requires a separate explicit implementation request.

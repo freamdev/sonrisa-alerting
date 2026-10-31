@@ -1,6 +1,6 @@
 # Implementation status / human review log
 
-**Current phase:** 07 - AWAITING HUMAN VALIDATION. Phases 00 through 06 remain APPROVED. No subsequent phase is authorized or implemented. The post-MVP Slack full-content/multiple-message validation item remains deferred.
+**Current phase:** 07 - APPROVED (human approved on 2026-10-31, including the Minimal API boundary split). Phases 00 through 06 remain APPROVED. Phase 08 is NOT STARTED; no subsequent phase is authorized or implemented. The post-MVP Slack full-content/multiple-message validation item remains deferred.
 
 Append for each phase:
 
@@ -329,7 +329,7 @@ Only developer-provided approval may change the phase to `APPROVED`.
 
 ## Phase 07 - Personal and admin HTTP APIs
 
-- Status: `AWAITING HUMAN VALIDATION`. Implementation authorization and the decisions below are not completed-phase approval. No Phase 08 work or commit created.
+- Status: `APPROVED` — developer explicitly approved Phase 07, including the endpoint split, on 2026-10-31. No Phase 08 work or commit created.
 - Scope delivered:
   - Authenticated `/api/me` catalogs, independent selection arrays, and idempotent topic/channel PUT/DELETE. Personal ownership always comes from the server-side Identity session. Admins retain personal access.
   - Admin-only safe user listing, enable/disable and hard deletion using Identity with the approved PostgreSQL cascade policy; global topic/channel listing and enable/disable. No user/catalog creation, role editing, destination UI or per-topic/channel preference matrix.
@@ -368,4 +368,14 @@ Only developer-provided approval may change the phase to `APPROVED`.
   - Requested `phases/04-api.md` does not exist. Used actual `codex_alerts_plan/phases/07-api.md`, explained before coding, consistent with the explicit Phase 07 assignment. Verified Phase 06 human approval and clean initial worktree.
   - Explained the plan and existing relevant code before editing. Asked two blocking behavior questions and waited. Developer on 2026-10-31 selected "Reject new selections while disabled; allow removal (Recommended)" and "Prevent self-disable and self-delete (Recommended)". Implemented both and recorded them in project context.
   - No blocking questions or scope deviations remain. No subsequent phase implemented; no commit created.
-- Developer approval: pending explicit Phase 07 human validation.
+- Developer approval (2026-10-31): "with these changes the step is approved, update status files". Phase 07 and its Minimal API boundary split are human approved. Phase 08 requires a separate explicit implementation request.
+
+### Phase 07 review follow-up - split Minimal API boundaries
+
+- Status: `APPROVED` — included in the developer's explicit Phase 07 approval on 2026-10-31. Developer requested: "split the HTTP boundary into personal settings and administration classes, using Minimal API's"; after implementation and validation, approved with "with these changes the step is approved, update status files".
+- Replaced `src/Alerts.Api/ManagementEndpoints.cs` with `PersonalSettingsEndpoints.cs` and `AdministrationEndpoints.cs`, each registering its own authorized route group and owning its corresponding mutation handlers. `Program.cs` registers the groups independently.
+- Extracted shared catalog reads, HTTP metadata/error helpers and cache filter into `ManagementEndpointSupport.cs`, and the existing request/response records into `ManagementContracts.cs`. Updated the test's DTO import and documented the organization in `docs/phase07-api.md`. Routes, JSON contracts, CSRF/authorization, persistence and behavior are unchanged; no new dependencies or schema changes.
+- Validation: `dotnet build Alerts.sln --no-restore` passed with zero warnings/errors; `dotnet test Alerts.sln --no-build` passed all 156 tests, zero failures/skips (2 minutes 1 second); `dotnet format Alerts.sln --verify-no-changes --no-restore` and `git -c safe.directory=D:/Temp/Sonrisa diff --check` passed. A source comparison confirmed all 14 route mappings unchanged. Used the existing shell-local CLI home/cache settings. The first extraction attempt failed on a newline-sensitive source delimiter before creating the new files, causing an intermediate build to report missing mapping methods. Corrected the extraction to normalize line endings, generated all files and rebuilt successfully before the passing full-suite run.
+- Human validation: run `dotnet build Alerts.sln --no-restore`, `dotnet test Alerts.sln --no-build` and `dotnet format Alerts.sln --verify-no-changes --no-restore`; review the two route registrations in `Program.cs`. Existing API-client validation in `docs/phase07-api.md` remains applicable.
+- No new behavior, blocking questions or limitations. The earlier Phase 07 limitations remain. No Docker/provider rerun is needed for the file organization refactor; no later phase or commit created. Human approval received as recorded above.
+- Approval bookkeeping: documentation-only update to this log, root `README.md` and `docs/phase07-api.md`. No runtime changes or test rerun; Git whitespace check passed. Phase 08 remains NOT STARTED and requires a separate explicit request.

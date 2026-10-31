@@ -1,6 +1,6 @@
 # Alerts
 
-A small modular monolith for topic-based notifications through independently selected delivery channels. Phases 00 through 06 are human approved. Phase 07 adds personal/admin management APIs and is awaiting human validation. See [Phase 07 API contract and validation](docs/phase07-api.md), [Phase 06 polling](docs/phase06-source-worker.md), [Phase 05 adapters](docs/phase05-channels.md) and [Phase 04 routing](docs/phase04-routing.md). Full-content/multiple-message Slack behavior remains deferred beyond MVP. Phase 08 has not started.
+A small modular monolith for topic-based notifications through independently selected delivery channels. Phases 00 through 07 are human approved. Phase 07 adds personal/admin management APIs; its implementation, including the Minimal API boundary split, was approved on 2026-10-31. See [Phase 07 API contract and validation](docs/phase07-api.md), [Phase 06 polling](docs/phase06-source-worker.md), [Phase 05 adapters](docs/phase05-channels.md) and [Phase 04 routing](docs/phase04-routing.md). Full-content/multiple-message Slack behavior remains deferred beyond MVP. Phase 08 has not started.
 
 ## Run with Docker Compose
 

@@ -9,7 +9,6 @@ using Alerts.Api.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using static Alerts.Api.ManagementEndpoints;
 
 namespace Alerts.UnitTests;
 

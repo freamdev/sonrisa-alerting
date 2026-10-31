@@ -54,7 +54,8 @@ public static class Program
         if (app.Environment.IsDevelopment())
             app.MapOpenApi();
         app.MapAuthEndpoints();
-        app.MapManagementEndpoints();
+        app.MapPersonalSettingsEndpoints();
+        app.MapAdministrationEndpoints();
         app.MapDevelopmentNews();
         app.MapHealthChecks("/health").AllowAnonymous();
         return app;
